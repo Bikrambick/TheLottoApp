@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Lucy Number Generator";
+}
+<script src="~/Scripts/Custom/RangeSlider.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />
+<div class="well" id="Banner">
+    <img src="~/Content/Media/oz_lotto.png" id="bannerImage" />
+</div>
+<hr />
+<!--Calculator Area-->
+<div class="container calculator">
+    <div class="well">
+        <h3 style="text-align:center;">Lucky Number Generator</h3><br />
+        @using (Ajax.BeginForm("Calculate", "Calculator", new AjaxOptions() { OnSuccess = "getresult", HttpMethod = "post" }, new { enctype = "multipart/form-data", @class = "form form-horizontal", data_toggle = "validator" }))
+        {
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="age">Number of Odds</label>
+                <div class="col-md-9">
+                    <input class="form-control" name="numberOfOdds" id="numberOfOdds" placeholder="3" type="number"  value="" data-error="The selection is not valid">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="salary">Numbers below 15</label>
+                        <div class="col-md-9">
+                            <input class="form-control" name="numberBelow15" id="numberBelow15" placeholder="2" type="number"  data-error="The field is not valid" >
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="retire">Numbers between 15 and 30</label>
+                        <div class="col-md-9">
+                            <input class="form-control" name="numberBetween1530" id="numberBetween1530" placeholder="2" type="number"  data-error="The field is not valid" >
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="contribution">Score Range</label>
+                        <div class="col-md-9">
+                            <input class="form-control" id="contribution" name="contribution" placeholder="20%" min="0" type="number" value="" data-error="The additional contribution to super account is not valid" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="status">Number of previous repeat</label>
+                        <div class="col-md-9">
+                            <input class="form-control" name="numberOfPrevRepeat" id="numberOfPrevRepeat" placeholder="2" type="number" data-error="The field is not valid">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="owner">Numbers to include</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" placeholder="Enter comma separated data" id="numberstoinclude" name="numberstoinclude" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="owner">Numbers to exclude</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" placeholder="Enter comma separated data" id="numberstoexclude" name="numberstoexclude" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="downsize">Number of games</label>
+                        <div class="col-md-9">
+                            <input class="form-control" name="numberofgames" id="numberofgames"  placeholder="15" type="number" min="1" value="" data-error="Invalid Selection" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-4">
+                            <input type="submit" value="Calculate" class="btn pull-right btn-primary" id="calculate">
+                        </div>
+                    </div>
+        }
+    </div>
+</div>
+
+<hr />
+

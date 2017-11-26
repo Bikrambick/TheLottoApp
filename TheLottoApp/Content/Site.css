@@ -20,5 +20,12 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
+#Banner{
+    margin-top :15px;
+}
+#bannerImage{
+    height:100px;
+}
+
