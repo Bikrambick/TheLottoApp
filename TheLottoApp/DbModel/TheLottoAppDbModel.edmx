@@ -1,0 +1,951 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TheLottoAppDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="NbWon" Type="int" />
+          <Property Name="WealthEst" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TheLottoAppDb.dbo.tblAddress' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblAddress">
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Suburb" Type="nvarchar" MaxLength="50" />
+          <Property Name="SreetNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Validity" Type="bit" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+        </EntityType>-->
+        <EntityType Name="tblBallLottery">
+          <Key>
+            <PropertyRef Name="BallNumber" />
+          </Key>
+          <Property Name="BallNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LotteryID" Type="int" />
+          <Property Name="NbTimesOccured" Type="int" />
+          <Property Name="Score" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCombination">
+          <Key>
+            <PropertyRef Name="CombID" />
+          </Key>
+          <Property Name="Numbers" Type="nvarchar" MaxLength="50" />
+          <Property Name="CombID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SetID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblGeneratedSet">
+          <Key>
+            <PropertyRef Name="SetID" />
+          </Key>
+          <Property Name="Lottery" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NbOfOdds" Type="int" />
+          <Property Name="FlagForOdds" Type="bit" />
+          <Property Name="Timing" Type="int" />
+          <Property Name="NbOfB20" Type="int" />
+          <Property Name="FlagForB20" Type="bit" />
+          <Property Name="ScoreRangeTop" Type="int" />
+          <Property Name="ScoreRangeBottom" Type="int" />
+          <Property Name="FlagForScore" Type="bit" />
+          <Property Name="SetScore" Type="float" />
+          <Property Name="PrevRepNb" Type="float" />
+          <Property Name="FlagForPrevRep" Type="bit" />
+          <Property Name="NbToInc" Type="nvarchar" MaxLength="50" />
+          <Property Name="NbOfGames" Type="float" />
+          <Property Name="FailedFlag" Type="bit" />
+          <Property Name="SetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLottery">
+          <Key>
+            <PropertyRef Name="LotteryID" />
+          </Key>
+          <Property Name="LottoName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NbOfBalls" Type="int" />
+          <Property Name="DayPlay" Type="nvarchar" MaxLength="50" />
+          <Property Name="LotteryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TotalNbBalls" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPlan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Cost" Type="float" />
+          <Property Name="Restriction" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblQAThread">
+          <Key>
+            <PropertyRef Name="QAThreadID" />
+          </Key>
+          <Property Name="DateTimeOpen" Type="datetime" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="50" />
+          <Property Name="OpenUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="QAThreadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReply">
+          <Key>
+            <PropertyRef Name="ReplyID" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="QAThread" Type="int" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="ReplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblResults">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="LotteryID" Type="int" />
+          <Property Name="ResultDate" Type="datetime" />
+          <Property Name="NumberSet" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblServiceTicket">
+          <Key>
+            <PropertyRef Name="SerTicketID" />
+          </Key>
+          <Property Name="DateTimeSent" Type="datetime" />
+          <Property Name="FlagResolved" Type="bit" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Responsible" Type="nvarchar" MaxLength="50" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="SerTicketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTicket">
+          <Key>
+            <PropertyRef Name="LTID" />
+          </Key>
+          <Property Name="Lottery" Type="nvarchar" MaxLength="50" />
+          <Property Name="DatePlay" Type="datetime" />
+          <Property Name="DateBuy" Type="datetime" />
+          <Property Name="Combination" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Buyer" Type="nvarchar" MaxLength="50" />
+          <Property Name="LTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TheLottoAppDb.dbo.tblUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="SelectedPlan" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserType" Type="float" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="NbWon" Type="int" />
+          <Property Name="WealthEst" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TheLottoAppDb.dbo.tblUserPlan' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tblUserPlan">
+          <Property Name="PlanID" Type="int" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+        </EntityType>-->
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'TheLottoAppDb.dbo.tblAddress' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_tblAddress_AspNetUsers" />-->
+        <Association Name="FK_tblBallLottery_tblLottery">
+          <End Role="tblLottery" Type="Self.tblLottery" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBallLottery" Type="Self.tblBallLottery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLottery">
+              <PropertyRef Name="LotteryID" />
+            </Principal>
+            <Dependent Role="tblBallLottery">
+              <PropertyRef Name="LotteryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLottery_tblLottery">
+          <End Role="tblLottery" Type="Self.tblLottery" Multiplicity="1" />
+          <End Role="tblLottery1" Type="Self.tblLottery" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblLottery">
+              <PropertyRef Name="LotteryID" />
+            </Principal>
+            <Dependent Role="tblLottery1">
+              <PropertyRef Name="LotteryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblResults_tblLottery">
+          <End Role="tblLottery" Type="Self.tblLottery" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblResults" Type="Self.tblResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLottery">
+              <PropertyRef Name="LotteryID" />
+            </Principal>
+            <Dependent Role="tblResults">
+              <PropertyRef Name="LotteryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_tblUserPlan_AspNetUsers" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_tblUserPlan_tblPlan" />-->
+        <EntityContainer Name="TheLottoAppDbModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBallLottery" EntityType="Self.tblBallLottery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCombination" EntityType="Self.tblCombination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGeneratedSet" EntityType="Self.tblGeneratedSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLottery" EntityType="Self.tblLottery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPlan" EntityType="Self.tblPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblQAThread" EntityType="Self.tblQAThread" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReply" EntityType="Self.tblReply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblResults" EntityType="Self.tblResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblServiceTicket" EntityType="Self.tblServiceTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTicket" EntityType="Self.tblTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblUser].[UserName] AS [UserName], 
+    [tblUser].[Password] AS [Password], 
+    [tblUser].[Email] AS [Email], 
+    [tblUser].[Phone] AS [Phone], 
+    [tblUser].[SelectedPlan] AS [SelectedPlan], 
+    [tblUser].[UserType] AS [UserType], 
+    [tblUser].[DOB] AS [DOB], 
+    [tblUser].[NbWon] AS [NbWon], 
+    [tblUser].[WealthEst] AS [WealthEst]
+    FROM [dbo].[tblUser] AS [tblUser]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBallLottery_tblLottery" Association="Self.FK_tblBallLottery_tblLottery">
+            <End Role="tblLottery" EntitySet="tblLottery" />
+            <End Role="tblBallLottery" EntitySet="tblBallLottery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLottery_tblLottery" Association="Self.FK_tblLottery_tblLottery">
+            <End Role="tblLottery" EntitySet="tblLottery" />
+            <End Role="tblLottery1" EntitySet="tblLottery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblResults_tblLottery" Association="Self.FK_tblResults_tblLottery">
+            <End Role="tblLottery" EntitySet="tblLottery" />
+            <End Role="tblResults" EntitySet="tblResults" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TheLottoAppDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Balance" Type="Double" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="NbWon" Type="Int32" />
+          <Property Name="WealthEst" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="tblBallLottery">
+          <Key>
+            <PropertyRef Name="BallNumber" />
+          </Key>
+          <Property Name="BallNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LotteryID" Type="Int32" />
+          <Property Name="NbTimesOccured" Type="Int32" />
+          <Property Name="Score" Type="Int32" />
+          <NavigationProperty Name="tblLottery" Relationship="Self.FK_tblBallLottery_tblLottery" FromRole="tblBallLottery" ToRole="tblLottery" />
+        </EntityType>
+        <EntityType Name="tblCombination">
+          <Key>
+            <PropertyRef Name="CombID" />
+          </Key>
+          <Property Name="Numbers" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CombID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SetID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblGeneratedSet">
+          <Key>
+            <PropertyRef Name="SetID" />
+          </Key>
+          <Property Name="Lottery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NbOfOdds" Type="Int32" />
+          <Property Name="FlagForOdds" Type="Boolean" />
+          <Property Name="Timing" Type="Int32" />
+          <Property Name="NbOfB20" Type="Int32" />
+          <Property Name="FlagForB20" Type="Boolean" />
+          <Property Name="ScoreRangeTop" Type="Int32" />
+          <Property Name="ScoreRangeBottom" Type="Int32" />
+          <Property Name="FlagForScore" Type="Boolean" />
+          <Property Name="SetScore" Type="Double" />
+          <Property Name="PrevRepNb" Type="Double" />
+          <Property Name="FlagForPrevRep" Type="Boolean" />
+          <Property Name="NbToInc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NbOfGames" Type="Double" />
+          <Property Name="FailedFlag" Type="Boolean" />
+          <Property Name="SetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblLottery">
+          <Key>
+            <PropertyRef Name="LotteryID" />
+          </Key>
+          <Property Name="LottoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NbOfBalls" Type="Int32" />
+          <Property Name="DayPlay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LotteryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TotalNbBalls" Type="Int32" />
+          <NavigationProperty Name="tblBallLotteries" Relationship="Self.FK_tblBallLottery_tblLottery" FromRole="tblLottery" ToRole="tblBallLottery" />
+          <NavigationProperty Name="tblLottery1" Relationship="Self.FK_tblLottery_tblLottery" FromRole="tblLottery" ToRole="tblLottery1" />
+          <NavigationProperty Name="tblLottery2" Relationship="Self.FK_tblLottery_tblLottery" FromRole="tblLottery1" ToRole="tblLottery" />
+          <NavigationProperty Name="tblResults" Relationship="Self.FK_tblResults_tblLottery" FromRole="tblLottery" ToRole="tblResults" />
+        </EntityType>
+        <EntityType Name="tblPlan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Double" />
+          <Property Name="Restriction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblQAThread">
+          <Key>
+            <PropertyRef Name="QAThreadID" />
+          </Key>
+          <Property Name="DateTimeOpen" Type="DateTime" Precision="3" />
+          <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OpenUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QAThreadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblReply">
+          <Key>
+            <PropertyRef Name="ReplyID" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QAThread" Type="Int32" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblResult">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="LotteryID" Type="Int32" />
+          <Property Name="ResultDate" Type="DateTime" Precision="3" />
+          <Property Name="NumberSet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="tblLottery" Relationship="Self.FK_tblResults_tblLottery" FromRole="tblResults" ToRole="tblLottery" />
+        </EntityType>
+        <EntityType Name="tblServiceTicket">
+          <Key>
+            <PropertyRef Name="SerTicketID" />
+          </Key>
+          <Property Name="DateTimeSent" Type="DateTime" Precision="3" />
+          <Property Name="FlagResolved" Type="Boolean" />
+          <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Responsible" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SerTicketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblTicket">
+          <Key>
+            <PropertyRef Name="LTID" />
+          </Key>
+          <Property Name="Lottery" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DatePlay" Type="DateTime" Precision="3" />
+          <Property Name="DateBuy" Type="DateTime" Precision="3" />
+          <Property Name="Combination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Buyer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SelectedPlan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Double" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="NbWon" Type="Int32" />
+          <Property Name="WealthEst" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBallLottery_tblLottery">
+          <End Role="tblLottery" Type="Self.tblLottery" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBallLottery" Type="Self.tblBallLottery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLottery">
+              <PropertyRef Name="LotteryID" />
+            </Principal>
+            <Dependent Role="tblBallLottery">
+              <PropertyRef Name="LotteryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLottery_tblLottery">
+          <End Role="tblLottery" Type="Self.tblLottery" Multiplicity="1" />
+          <End Role="tblLottery1" Type="Self.tblLottery" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblLottery">
+              <PropertyRef Name="LotteryID" />
+            </Principal>
+            <Dependent Role="tblLottery1">
+              <PropertyRef Name="LotteryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblResults_tblLottery">
+          <End Role="tblLottery" Type="Self.tblLottery" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblResults" Type="Self.tblResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLottery">
+              <PropertyRef Name="LotteryID" />
+            </Principal>
+            <Dependent Role="tblResults">
+              <PropertyRef Name="LotteryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TheLottoAppDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="tblBallLotteries" EntityType="Self.tblBallLottery" />
+          <EntitySet Name="tblCombinations" EntityType="Self.tblCombination" />
+          <EntitySet Name="tblGeneratedSets" EntityType="Self.tblGeneratedSet" />
+          <EntitySet Name="tblLotteries" EntityType="Self.tblLottery" />
+          <EntitySet Name="tblPlans" EntityType="Self.tblPlan" />
+          <EntitySet Name="tblQAThreads" EntityType="Self.tblQAThread" />
+          <EntitySet Name="tblReplies" EntityType="Self.tblReply" />
+          <EntitySet Name="tblResults" EntityType="Self.tblResult" />
+          <EntitySet Name="tblServiceTickets" EntityType="Self.tblServiceTicket" />
+          <EntitySet Name="tblTickets" EntityType="Self.tblTicket" />
+          <EntitySet Name="tblUserTypes" EntityType="Self.tblUserType" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBallLottery_tblLottery" Association="Self.FK_tblBallLottery_tblLottery">
+            <End Role="tblLottery" EntitySet="tblLotteries" />
+            <End Role="tblBallLottery" EntitySet="tblBallLotteries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLottery_tblLottery" Association="Self.FK_tblLottery_tblLottery">
+            <End Role="tblLottery" EntitySet="tblLotteries" />
+            <End Role="tblLottery1" EntitySet="tblLotteries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblResults_tblLottery" Association="Self.FK_tblResults_tblLottery">
+            <End Role="tblLottery" EntitySet="tblLotteries" />
+            <End Role="tblResults" EntitySet="tblResults" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TheLottoAppDbModelStoreContainer" CdmEntityContainer="TheLottoAppDbEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="NbWon" ColumnName="NbWon" />
+                <ScalarProperty Name="WealthEst" ColumnName="WealthEst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBallLotteries">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblBallLottery">
+              <MappingFragment StoreEntitySet="tblBallLottery">
+                <ScalarProperty Name="BallNumber" ColumnName="BallNumber" />
+                <ScalarProperty Name="LotteryID" ColumnName="LotteryID" />
+                <ScalarProperty Name="NbTimesOccured" ColumnName="NbTimesOccured" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCombinations">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblCombination">
+              <MappingFragment StoreEntitySet="tblCombination">
+                <ScalarProperty Name="Numbers" ColumnName="Numbers" />
+                <ScalarProperty Name="CombID" ColumnName="CombID" />
+                <ScalarProperty Name="SetID" ColumnName="SetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGeneratedSets">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblGeneratedSet">
+              <MappingFragment StoreEntitySet="tblGeneratedSet">
+                <ScalarProperty Name="Lottery" ColumnName="Lottery" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="NbOfOdds" ColumnName="NbOfOdds" />
+                <ScalarProperty Name="FlagForOdds" ColumnName="FlagForOdds" />
+                <ScalarProperty Name="Timing" ColumnName="Timing" />
+                <ScalarProperty Name="NbOfB20" ColumnName="NbOfB20" />
+                <ScalarProperty Name="FlagForB20" ColumnName="FlagForB20" />
+                <ScalarProperty Name="ScoreRangeTop" ColumnName="ScoreRangeTop" />
+                <ScalarProperty Name="ScoreRangeBottom" ColumnName="ScoreRangeBottom" />
+                <ScalarProperty Name="FlagForScore" ColumnName="FlagForScore" />
+                <ScalarProperty Name="SetScore" ColumnName="SetScore" />
+                <ScalarProperty Name="PrevRepNb" ColumnName="PrevRepNb" />
+                <ScalarProperty Name="FlagForPrevRep" ColumnName="FlagForPrevRep" />
+                <ScalarProperty Name="NbToInc" ColumnName="NbToInc" />
+                <ScalarProperty Name="NbOfGames" ColumnName="NbOfGames" />
+                <ScalarProperty Name="FailedFlag" ColumnName="FailedFlag" />
+                <ScalarProperty Name="SetID" ColumnName="SetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLotteries">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblLottery">
+              <MappingFragment StoreEntitySet="tblLottery">
+                <ScalarProperty Name="LottoName" ColumnName="LottoName" />
+                <ScalarProperty Name="NbOfBalls" ColumnName="NbOfBalls" />
+                <ScalarProperty Name="DayPlay" ColumnName="DayPlay" />
+                <ScalarProperty Name="LotteryID" ColumnName="LotteryID" />
+                <ScalarProperty Name="TotalNbBalls" ColumnName="TotalNbBalls" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPlans">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblPlan">
+              <MappingFragment StoreEntitySet="tblPlan">
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Restriction" ColumnName="Restriction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblQAThreads">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblQAThread">
+              <MappingFragment StoreEntitySet="tblQAThread">
+                <ScalarProperty Name="DateTimeOpen" ColumnName="DateTimeOpen" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="OpenUser" ColumnName="OpenUser" />
+                <ScalarProperty Name="QAThreadID" ColumnName="QAThreadID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReplies">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblReply">
+              <MappingFragment StoreEntitySet="tblReply">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="QAThread" ColumnName="QAThread" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblResults">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblResult">
+              <MappingFragment StoreEntitySet="tblResults">
+                <ScalarProperty Name="LotteryID" ColumnName="LotteryID" />
+                <ScalarProperty Name="ResultDate" ColumnName="ResultDate" />
+                <ScalarProperty Name="NumberSet" ColumnName="NumberSet" />
+                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblServiceTickets">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblServiceTicket">
+              <MappingFragment StoreEntitySet="tblServiceTicket">
+                <ScalarProperty Name="DateTimeSent" ColumnName="DateTimeSent" />
+                <ScalarProperty Name="FlagResolved" ColumnName="FlagResolved" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="Responsible" ColumnName="Responsible" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SerTicketID" ColumnName="SerTicketID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTickets">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblTicket">
+              <MappingFragment StoreEntitySet="tblTicket">
+                <ScalarProperty Name="Lottery" ColumnName="Lottery" />
+                <ScalarProperty Name="DatePlay" ColumnName="DatePlay" />
+                <ScalarProperty Name="DateBuy" ColumnName="DateBuy" />
+                <ScalarProperty Name="Combination" ColumnName="Combination" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+                <ScalarProperty Name="Buyer" ColumnName="Buyer" />
+                <ScalarProperty Name="LTID" ColumnName="LTID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserTypes">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblUserType">
+              <MappingFragment StoreEntitySet="tblUserType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="SelectedPlan" ColumnName="SelectedPlan" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="NbWon" ColumnName="NbWon" />
+                <ScalarProperty Name="WealthEst" ColumnName="WealthEst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TheLottoAppDbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -43,7 +43,7 @@ namespace DataAccess
             }
             catch (Exception ex) { var error = ex.Message.ToString(); }
             //now creating an object that could be used to access the stuff inside a python script
-            pythonClass = engine.Operations.Invoke(scope.GetVariable("RunningCalculator"));
+            pythonClass = engine.Operations.Invoke(scope.GetVariable("get_the_number"));
         }
 
         public dynamic CallFunction(string method, params dynamic[] arguments)
