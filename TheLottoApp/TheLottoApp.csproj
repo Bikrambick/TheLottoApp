@@ -55,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -174,6 +176,72 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NumberGeneratorController.cs" />
+    <Compile Include="DbModel\AspNetRole.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\AspNetUser.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\AspNetUserClaim.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\AspNetUserLogin.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\C__MigrationHistory.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblBallLottery.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblCombination.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblGeneratedSet.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblLottery.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblPlan.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblQAThread.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblReply.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblResult.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblServiceTicket.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblTicket.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblUser.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\tblUserType.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\TheLottoAppDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TheLottoAppDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\TheLottoAppDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\TheLottoAppDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TheLottoAppDbModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,6 +257,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom\RangeSlider.css" />
     <Content Include="Content\Media\oz_lotto.png" />
+    <Content Include="DbModel\TheLottoAppDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TheLottoAppDbModel.edmx</DependentUpon>
+      <LastGenOutput>TheLottoAppDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbModel\TheLottoAppDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TheLottoAppDbModel.edmx</DependentUpon>
+      <LastGenOutput>TheLottoAppDbModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -196,6 +274,13 @@
     <Content Include="PyFiles\twelve_version_for_iron_python.py" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="DbModel\TheLottoAppDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TheLottoAppDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DbModel\TheLottoAppDbModel.edmx.diagram">
+      <DependentUpon>TheLottoAppDbModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\RangeSlider.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -257,6 +342,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
