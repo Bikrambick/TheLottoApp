@@ -17,13 +17,13 @@ namespace TheLottoApp.Models
 
         public int NumbersAbove30 { get; set; }
 
-        public int[] ScoreRange { get; set; }
+        public string ScoreRange { get; set; }
 
         public int NumbersOfPreviousRepeat { get; set; }
 
-        public int[] NumbersToInclude { get; set; }
+        public string NumbersToInclude { get; set; }
 
-        public int[] NumbersToExclude { get; set; }
+        public string NumbersToExclude { get; set; }
 
         public int NumberOfGames { get; set; }
 

@@ -14,16 +14,16 @@ class get_the_number:
                                   score_range, flag_for_score_range, prev_rep_numb, flag_for_prev_rep_num, \
                                   nb_to_inc, nb_to_excl, nb_of_games):
         if lottery_id == 'ozlotto':
-           # with open('ozzhistory.txt') as file:
-            #    results = []
-             #   for line in file:
-              #      line=line.replace('\n','')
-               #     results.append(resul(','.join(line.split('\t'))))
+            with open(r'D:\MyGit\TheLottoApp\TheLottoApp\PyFiles\ozzhistory.txt') as file:
+                results = []
+                for line in file:
+                    line=line.replace('\n','')
+                    results.append(resul(','.join(line.split('\t'))))
             ## retrieving results from the previous game
             if flag_for_prev_rep_num:
                 if prev_rep_numb >7:
                     return 'Cannot return more than 7 numbers from previous game'
-                maxresult = [27,7,35,34,25,33,28]#results[0]
+                maxresult = results[0]
                 total_comb = 1
                 left_balls = 45 - prev_rep_numb
                 for num in range(7-prev_rep_numb):
@@ -212,7 +212,7 @@ class get_the_number:
                     
             ######################################
             ## generator
-            max_iter = 2000000000
+            max_iter = 200000
             generated_list = []
             #print(maxresult.numbers.split(','))
             for i in range(nb_of_games):

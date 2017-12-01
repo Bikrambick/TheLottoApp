@@ -3,142 +3,84 @@
 @{
     ViewBag.Title = "Lucy Number Generator";
 }
-<script src="~/Scripts/Custom/RangeSlider.js"></script>
-<link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />
+@*<script src="~/Scripts/Custom/RangeSlider.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />*@
+<link href="~/css/bootstrap-slider.min.css" rel="stylesheet" />
 
 <!--Calculator Area-->
-@*<div class="container calculator">
-    <div class="well">
-        <h3 style="text-align:center;">Lucky Number Generator</h3><br />
-        @using (Ajax.BeginForm("GenerateNumber", "NumberGenerator", new AjaxOptions() { OnSuccess = "getresult", HttpMethod = "post" }, new { enctype = "multipart/form-data", @class = "form form-horizontal", data_toggle = "validator" }))
-        {
-            @Html.AntiForgeryToken();
-            //@Html.ValidationSummary("", new { @class = "text-danger" })
-            <div class="form-group">
-                <label class="col-md-3 control-label" for="age">Number of Odds</label>
-                <div class="col-md-9">
-                    @Html.TextBoxFor(x=>x.NumberOfOdds, new { @type = "number", @class = "form-control", @value = "1" }) Pawan This is the baseline, repeat the same for 
-                                                                                                                             all other fields in the form. I'll leave it post-design
-                    @Html.ValidationMessageFor(m => m.NumberOfOdds, "", new { @class = "text-danger" })
-                </div>
-            </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="salary">Numbers below 15</label>
-                        <div class="col-md-9">
-                            <input class="form-control" name="numberBelow15" id="numberBelow15" placeholder="2" type="number"  data-error="The field is not valid" >
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="retire">Numbers between 15 and 30</label>
-                        <div class="col-md-9">
-                            <input class="form-control" name="numberBetween1530" id="numberBetween1530" placeholder="2" type="number"  data-error="The field is not valid" >
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="contribution">Score Range</label>
-                        <div class="col-md-9">
-                            <input class="form-control" id="contribution" name="contribution" placeholder="20%" min="0" type="number" value="" data-error="The additional contribution to super account is not valid" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="status">Number of previous repeat</label>
-                        <div class="col-md-9">
-                            <input class="form-control" name="numberOfPrevRepeat" id="numberOfPrevRepeat" placeholder="2" type="number" data-error="The field is not valid">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="owner">Numbers to include</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" placeholder="Enter comma separated data" id="numberstoinclude" name="numberstoinclude" />
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="owner">Numbers to exclude</label>
-                        <div class="col-md-9">
-                            <input class="form-control" type="text" placeholder="Enter comma separated data" id="numberstoexclude" name="numberstoexclude" />
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="downsize">Number of games</label>
-                        <div class="col-md-9">
-                            <input class="form-control" name="numberofgames" id="numberofgames"  placeholder="15" type="number" min="1" value="" data-error="Invalid Selection" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-3 col-md-4">
-                            <input type="submit" value="Calculate" class="btn pull-right btn-primary" id="calculate">
-                        </div>
-                    </div>
-        }
-    </div>
-</div>*@
-
 <hr />
-
 <div class="container">
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-6 effect8">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row-fluid user-row">
-                        <img src="http://s11.postimg.org/7kzgji28v/logo_sm_2_mr_1.png" class="img-responsive" alt="Conxole Admin" />
+                        <img src="~/Content/Media/setup.png" alt="Conxole Admin"/>
                     </div>
                 </div>
                 <div class="panel-body">
                     @using (Ajax.BeginForm("GenerateNumber", "NumberGenerator", new AjaxOptions() { OnSuccess = "getresult", HttpMethod = "post" }, new { enctype = "multipart/form-data", @class = "form form-horizontal", data_toggle = "validator" }))
                     {
                         @Html.AntiForgeryToken();
-                        //@Html.ValidationSummary("", new { @class = "text-danger" })
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="age">Number of Odds</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control", @value = "1" }) Pawan This is the baseline, repeat the same for
-                                all other fields in the form. I'll leave it post-design
-                                @Html.ValidationMessageFor(m => m.NumberOfOdds, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control", @value = "-1" }) 
+                               <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter"/>
+                                @*@Html.ValidationMessageFor(m => m.NumberOfOdds, "Please enter number of odds", new { @class = "text-danger" })*@
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberBelow15" id="numberBelow15" placeholder="2" type="number" data-error="The field is not valid">
-                                <div class="help-block with-errors"></div>
+                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control", @value = "-1" })
+                                
+                                
+                                <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers between 15 and 30</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberBetween1530" id="numberBetween1530" placeholder="2" type="number" data-error="The field is not valid">
-                                <div class="help-block with-errors"></div>
+                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control", @value = "-1" })
+                               
+                                <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="retire">Numbers above 30</label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control", @value = "-1" })
+                                
+                                <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="contribution">Score Range</label>
                             <div class="col-md-7">
-                                <input class="form-control" id="contribution" name="contribution" placeholder="20%" min="0" type="number" value="" data-error="The additional contribution to super account is not valid" required>
-                                <div class="help-block with-errors"></div>
+                                @*<b>1.8&nbsp;&nbsp;</b> <input id="slider-input" name="slider-input" type="text" class="span2" value="" data-slider-min="0.018" 
+                                   data-slider-max="0.0265" data-slider-step="0.002" data-slider-value="[0.018,0.0265]" />
+                                 <b>&nbsp;&nbsp;2.65</b>*@
+                                <b>1.8&nbsp;&nbsp;</b> @Html.TextBoxFor(x => x.ScoreRange, new { id = "slider-input", @type = "text",
+                                                      @class = "form-control", @value = "", data_slider_min = "0.018",
+                                               data_slider_max = "0.0265", data_slider_step = "0.002", data_slider_value = "[0.018,0.0265]" })
+                                <b>&nbsp;&nbsp;2.65</b>
+                                <label class="numberOfOddsLabel">Doesn't matter</label>
+                                 <input class="numberOfOddsRange" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="status">Number of previous repeat</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberOfPrevRepeat" id="numberOfPrevRepeat" placeholder="2" type="number" data-error="The field is not valid">
-                                <div class="help-block with-errors"></div>
+                                @Html.TextBoxFor(x => x.NumbersOfPreviousRepeat, new { @type = "number", @class = "form-control", @value = "-1" })
+                               
+                                <label class="numberOfOddsLabel">Doesn't matter</label> <input cl="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to include</label>
                             <div class="col-md-7">
-                                <input class="form-control" type="text" placeholder="Enter comma separated data" id="numberstoinclude" name="numberstoinclude" />
+                                <input class="form-control" name="numberstoinclude" type="text" placeholder="Enter comma separated data" id="numberstoinclude" name="numberstoinclude" />
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -146,7 +88,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to exclude</label>
                             <div class="col-md-7">
-                                <input class="form-control" type="text" placeholder="Enter comma separated data" id="numberstoexclude" name="numberstoexclude" />
+                                <input class="form-control" name="numberstoexclude" type="text" placeholder="Enter comma separated data" id="numberstoexclude" name="numberstoexclude" />
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -154,7 +96,8 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="downsize">Number of games</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberofgames" id="numberofgames" placeholder="15" type="number" min="1" value="" data-error="Invalid Selection" required>
+                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "-1" })
+                                
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -168,12 +111,62 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 col-md-offset-1">
+            <h4 style="text-align:center;">My generated sets</h4>
+                <table class="table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                        </tr>
+                        <tr>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                            <td>data1</td>
+                        </tr>
+                    </tbody>
+                </table>
 
+            </div>
+            </div>
         </div>
-    </div>
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/Scripts/bootstrap-slider.min.js")
+<script>
+    $('#slider-input').slider({});
+      
+    $(".numberOfOddsInput").click(function () {
+        debugger;
+        $(this).parent().children('input').first().toggle("disabled");
+        
+    })
+    $(".numberOfOddsRange").click(function () {
+        debugger;
+        $('#slider-input').toggle('disabled');
+            $(this).parent().children().not(this).toggle("disabled");
+        
+    })
+
+    function getresult(data) {
+        alert(data.result);
+    };
+    </script>
 }
+
