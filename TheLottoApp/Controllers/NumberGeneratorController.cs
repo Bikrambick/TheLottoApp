@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using DataAccess;
 using TheLottoApp.Models;
+using System.IO;
+
 namespace TheLottoApp.Controllers
 {
     public class NumberGeneratorController : Controller
@@ -29,6 +31,7 @@ namespace TheLottoApp.Controllers
         public ActionResult GenerateNumber(NumberGeneratorViewModel model)
         {
             var rootPythonDir = Server.MapPath("../PyFiles/");
+            var filePathHistory = Path.Combine(rootPythonDir, "ozzhistory.txt");
             var pathToLib = Server.MapPath("../PyFiles/Lib");
             var pathToPyFile = Server.MapPath("../PyFiles/twelve_version_for_iron_python.py");
             DataAccess.PythonInterface IPyInterface = new PythonInterface(pathToLib, pathToPyFile);
@@ -104,7 +107,7 @@ namespace TheLottoApp.Controllers
                 var results = IPyInterface.CallFunction("get_set", lottery, userid, numberOfOdds, flag_for_odds
                                  , nb_less_15, flag_for_15, nb_middle, flag_middle, nb_bigger_30, flag_for_30
                                  , ScoreVeryRange, flag_for_score_range, prev_rep_numb, flag_for_prev_num
-                                 , nb_to_inc, nb_to_excl, nb_of_games);
+                                 , nb_to_inc, nb_to_excl, nb_of_games, filePathHistory);
             }
             catch (Exception ex) { }
             return View();

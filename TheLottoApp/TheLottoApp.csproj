@@ -194,6 +194,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="PyFiles\first.py" />
+    <Content Include="PyFiles\ozzhistory.txt" />
     <Content Include="PyFiles\twelve_version_for_iron_python.py" />
     <Content Include="Scripts\bootstrap-slider.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -274,7 +275,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52225</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

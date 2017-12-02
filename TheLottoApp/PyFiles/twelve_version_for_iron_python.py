@@ -12,9 +12,9 @@ class get_the_number:
     def get_set(self,lottery_id,user_id,nb_of_odds, flag_for_odds, \
                                   nb_less_first, flag_for_nb_less_first, nb_middle, flag_for_middle, nb_bigger_last, flag_for_nb_bigger_last,\
                                   score_range, flag_for_score_range, prev_rep_numb, flag_for_prev_rep_num, \
-                                  nb_to_inc, nb_to_excl, nb_of_games):
+                                  nb_to_inc, nb_to_excl, nb_of_games,file_path):
         if lottery_id == 'ozlotto':
-            with open(r'D:\MyGit\TheLottoApp\TheLottoApp\PyFiles\ozzhistory.txt') as file:
+            with open(file_path) as file:
                 results = []
                 for line in file:
                     line=line.replace('\n','')
