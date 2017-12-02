@@ -29,8 +29,6 @@ namespace TheLottoApp.DbModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBallLottery> tblBallLotteries { get; set; }
-        public virtual tblLottery tblLottery1 { get; set; }
-        public virtual tblLottery tblLottery2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblResult> tblResults { get; set; }
     }

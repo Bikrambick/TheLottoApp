@@ -13,10 +13,10 @@ namespace TheLottoApp.DbModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TheLottoAppDbEntities : DbContext
+    public partial class DbEntities : DbContext
     {
-        public TheLottoAppDbEntities()
-            : base("name=TheLottoAppDbEntities")
+        public DbEntities()
+            : base("name=DbEntities")
         {
         }
     
@@ -42,5 +42,6 @@ namespace TheLottoApp.DbModel
         public virtual DbSet<tblTicket> tblTickets { get; set; }
         public virtual DbSet<tblUserType> tblUserTypes { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tblAddress> tblAddresses { get; set; }
     }
 }
