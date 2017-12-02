@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TheLottoAppDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TheLottoAppDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -70,16 +70,18 @@
           <Property Name="NbWon" Type="int" />
           <Property Name="WealthEst" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'TheLottoAppDb.dbo.tblAddress' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="tblAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="Suburb" Type="nvarchar" MaxLength="50" />
           <Property Name="SreetNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Validity" Type="bit" />
           <Property Name="UserID" Type="nvarchar" MaxLength="128" />
-        </EntityType>-->
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblBallLottery">
           <Key>
             <PropertyRef Name="BallNumber" />
@@ -277,9 +279,20 @@ warning 6013: The table/view 'TheLottoAppDb.dbo.tblUserPlan' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'TheLottoAppDb.dbo.tblAddress' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_tblAddress_AspNetUsers" />-->
+        <Association Name="FK_tblAddress_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblAddress" Type="Self.tblAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblBallLottery_tblLottery">
           <End Role="tblLottery" Type="Self.tblLottery" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -333,6 +346,7 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAddress" EntityType="Self.tblAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBallLottery" EntityType="Self.tblBallLottery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCombination" EntityType="Self.tblCombination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGeneratedSet" EntityType="Self.tblGeneratedSet" Schema="dbo" store:Type="Tables" />
@@ -373,6 +387,10 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblAddress_AspNetUsers" Association="Self.FK_tblAddress_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="tblAddress" EntitySet="tblAddress" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblBallLottery_tblLottery" Association="Self.FK_tblBallLottery_tblLottery">
             <End Role="tblLottery" EntitySet="tblLottery" />
             <End Role="tblBallLottery" EntitySet="tblBallLottery" />
@@ -386,8 +404,7 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
             <End Role="tblResults" EntitySet="tblResults" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TheLottoAppDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -453,6 +470,7 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="tblAddresses" Relationship="TheLottoAppDbModel.FK_tblAddress_AspNetUsers" FromRole="AspNetUser" ToRole="tblAddress" />
         </EntityType>
         <EntityType Name="tblBallLottery">
           <Key>
@@ -505,8 +523,6 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
           <Property Name="LotteryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TotalNbBalls" Type="Int32" />
           <NavigationProperty Name="tblBallLotteries" Relationship="Self.FK_tblBallLottery_tblLottery" FromRole="tblLottery" ToRole="tblBallLottery" />
-          <NavigationProperty Name="tblLottery1" Relationship="Self.FK_tblLottery_tblLottery" FromRole="tblLottery" ToRole="tblLottery1" />
-          <NavigationProperty Name="tblLottery2" Relationship="Self.FK_tblLottery_tblLottery" FromRole="tblLottery1" ToRole="tblLottery" />
           <NavigationProperty Name="tblResults" Relationship="Self.FK_tblResults_tblLottery" FromRole="tblLottery" ToRole="tblResults" />
         </EntityType>
         <EntityType Name="tblPlan">
@@ -665,7 +681,7 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TheLottoAppDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -707,13 +723,45 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="tblAddresses" EntityType="TheLottoAppDbModel.tblAddress" />
+          <AssociationSet Name="FK_tblAddress_AspNetUsers" Association="TheLottoAppDbModel.FK_tblAddress_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="tblAddress" EntitySet="tblAddresses" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Suburb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SreetNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Validity" Type="Boolean" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="AspNetUser" Relationship="TheLottoAppDbModel.FK_tblAddress_AspNetUsers" FromRole="tblAddress" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_tblAddress_AspNetUsers">
+          <End Type="TheLottoAppDbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TheLottoAppDbModel.tblAddress" Role="tblAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAddress">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TheLottoAppDbModelStoreContainer" CdmEntityContainer="TheLottoAppDbEntities">
+        <EntityContainerMapping StorageEntityContainer="TheLottoAppDbModelStoreContainer" CdmEntityContainer="DbEntities">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="TheLottoAppDbModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -925,6 +973,19 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tblAddresses">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblAddress">
+              <MappingFragment StoreEntitySet="tblAddress">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Validity" ColumnName="Validity" />
+                <ScalarProperty Name="SreetNumber" ColumnName="SreetNumber" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
