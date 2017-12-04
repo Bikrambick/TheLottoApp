@@ -114,25 +114,26 @@
         </div>
         <div class="col-md-5 col-md-offset-1">
             <h4 style="text-align:center;">My generated sets</h4>
-            <div id="generated_number">
-                <span class="number" id="number_1">27</span>
-                <span class="number" id="number_2">2</span>
-                <span class="number" id="number_3">11</span>
-                <span class="number" id="number_4">34</span>
-                <span class="number" id="number_5">18</span>
-                <span class="number" id="number_6">24</span>
-                <span class="number" id="number_7">39</span>
+            <div id="GeneratedSetWrapper">
+                <div id="generated_number">
+                    <span class="number" id="number_1">27</span>
+                    <span class="number" id="number_2">2</span>
+                    <span class="number" id="number_3">11</span>
+                    <span class="number" id="number_4">34</span>
+                    <span class="number" id="number_5">18</span>
+                    <span class="number" id="number_6">24</span>
+                    <span class="number" id="number_7">39</span>
+                </div>
+                <div id="generated_number">
+                    <span class="number" id="number_1">27</span>
+                    <span class="number" id="number_2">2</span>
+                    <span class="number" id="number_3">11</span>
+                    <span class="number" id="number_4">34</span>
+                    <span class="number" id="number_5">18</span>
+                    <span class="number" id="number_6">24</span>
+                    <span class="number" id="number_7">39</span>
+                </div>
             </div>
-            <div id="generated_number">
-                <span class="number" id="number_1">27</span>
-                <span class="number" id="number_2">2</span>
-                <span class="number" id="number_3">11</span>
-                <span class="number" id="number_4">34</span>
-                <span class="number" id="number_5">18</span>
-                <span class="number" id="number_6">24</span>
-                <span class="number" id="number_7">39</span>
-            </div>
-
 
             </div>
             </div>
@@ -140,7 +141,8 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/Scripts/bootstrap-slider.min.js")
+    @Scripts.Render("~/Scripts/bootstrap-slider.min.js")
+    @Scripts.Render("~/bundles/jqueryunob")
 <script>
     $('#slider-input').slider({});
       
@@ -157,7 +159,16 @@
     })
 
     function getresult(data) {
-        alert(data.result);
+        console.log(data.GeneratedSet.length);
+        if (data != null || data != "Server Error!!!") {
+            for (i = 0; i < data.GeneratedSet.length; i++) {
+                $('#GeneratedSetWrapper').append("<div id='generated_number'>");
+                $.each(data.GeneratedSet[i], function (index, val) {
+                    $('#generated_number').append("<span class='number'>" + val + "</span>");
+                })
+            }
+            
+        }
     };
     </script>
 }

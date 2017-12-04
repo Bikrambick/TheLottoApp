@@ -28,7 +28,7 @@ namespace TheLottoApp.Controllers
         //    }catch(Exception ex) { }
         //}
         [HttpPost]
-        public ActionResult GenerateNumber(NumberGeneratorViewModel model)
+        public JsonResult GenerateNumber(NumberGeneratorViewModel model)
         {
             var rootPythonDir = Server.MapPath("../PyFiles/");
             var filePathHistory = Path.Combine(rootPythonDir, "ozzhistory.txt");
@@ -102,15 +102,38 @@ namespace TheLottoApp.Controllers
             }
 
             var nb_of_games = model.NumberOfGames;
+            List<List<int>> generatedSets = new List<List<int>>();
+            List<int> GeneratedNumberSetEachGame = new List<int>();
             try
             {
                 var results = IPyInterface.CallFunction("get_set", lottery, userid, numberOfOdds, flag_for_odds
                                  , nb_less_15, flag_for_15, nb_middle, flag_middle, nb_bigger_30, flag_for_30
                                  , ScoreVeryRange, flag_for_score_range, prev_rep_numb, flag_for_prev_num
                                  , nb_to_inc, nb_to_excl, nb_of_games, filePathHistory);
+                if(results != null)
+                {
+                    
+                    foreach (var item in results)
+                    {
+                        if (item != null)
+                        {
+                            GeneratedNumberSetEachGame = new List<int>();
+                            foreach (var itemX in item)
+                            {
+                                if (itemX == null) continue;
+                                GeneratedNumberSetEachGame.Add(itemX);
+                            }
+                            generatedSets.Add(GeneratedNumberSetEachGame);
+                        }
+
+                    
+
+                    }
+                }
+                return Json(new { GeneratedSet = generatedSets }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex) { }
-            return View();
+            return Json(new { GeneratedSet = "Server Error!!!" }, JsonRequestBehavior.AllowGet);
         }
     }
 }
