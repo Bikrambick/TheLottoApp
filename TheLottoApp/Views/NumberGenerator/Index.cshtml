@@ -116,7 +116,7 @@
             <h4 style="text-align:center;">My generated sets</h4>
             <div id="GeneratedSetWrapper">
                 <div id="generated_number">
-                    <span class="number" id="number_1">27</span>
+                    <span class="number">27</span>
                     <span class="number" id="number_2">2</span>
                     <span class="number" id="number_3">11</span>
                     <span class="number" id="number_4">34</span>
@@ -124,15 +124,7 @@
                     <span class="number" id="number_6">24</span>
                     <span class="number" id="number_7">39</span>
                 </div>
-                <div id="generated_number">
-                    <span class="number" id="number_1">27</span>
-                    <span class="number" id="number_2">2</span>
-                    <span class="number" id="number_3">11</span>
-                    <span class="number" id="number_4">34</span>
-                    <span class="number" id="number_5">18</span>
-                    <span class="number" id="number_6">24</span>
-                    <span class="number" id="number_7">39</span>
-                </div>
+              
             </div>
 
             </div>
@@ -161,11 +153,16 @@
     function getresult(data) {
         console.log(data.GeneratedSet.length);
         if (data != null || data != "Server Error!!!") {
+           
             for (i = 0; i < data.GeneratedSet.length; i++) {
-                $('#GeneratedSetWrapper').append("<div id='generated_number'>");
+                var wrapper = document.createElement('div');
+                wrapper.setAttribute('id', 'generated_number');
+                var spanWrapper = "";
                 $.each(data.GeneratedSet[i], function (index, val) {
-                    $('#generated_number').append("<span class='number'>" + val + "</span>");
+                    spanWrapper+= "<span class='number'>" + val + "</span>\n";
                 })
+                wrapper.innerHTML = spanWrapper;
+                $('#GeneratedSetWrapper').append(wrapper);
             }
             
         }
