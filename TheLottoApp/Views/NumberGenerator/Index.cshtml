@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="age">Number of Odds</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control", @value = "-1" }) 
+                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control"}) 
                                <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter"/>
                                 @*@Html.ValidationMessageFor(m => m.NumberOfOdds, "Please enter number of odds", new { @class = "text-danger" })*@
                             </div>
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control", @value = "-1" })
+                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control"})
                                 
                                 
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
@@ -97,7 +97,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="downsize">Number of games</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "-1" })
+                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "-1", min="1" })
                                 
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -130,12 +130,12 @@
     $('#slider-input').slider({});
       
     $(".numberOfOddsInput").click(function () {
-        debugger;
+        //$(this).parent().children('input').val(-1);
         $(this).parent().children('input').first().toggle("disabled");
         
     })
     $(".numberOfOddsRange").click(function () {
-        debugger;
+        $(this).val(-1);
         $('#slider-input').toggle('disabled');
             $(this).parent().children().not(this).toggle("disabled");
         
