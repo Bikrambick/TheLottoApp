@@ -38,38 +38,6 @@ textarea {
     color: #ffffff;
 }
 
-#home-container {
-/*css for full size background image*/
-  text-align:center;
-  width: 100%;
-  background-image: url(Media/bkg.jpg);
-  height: 405px;
-  background-position: center;
-}
-
-.effect8
-{
-    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-.effect8:before, .effect8:after
-{
-    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
-    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
-    box-shadow:0 0 20px rgba(0,0,0,0.8);
-    -moz-border-radius:100px / 10px;
-    border-radius:100px / 10px;
-}
-.effect8:after
-{
-    -webkit-transform:skew(8deg) rotate(3deg);
-       -moz-transform:skew(8deg) rotate(3deg);
-        -ms-transform:skew(8deg) rotate(3deg);
-         -o-transform:skew(8deg) rotate(3deg);
-            transform:skew(8deg) rotate(3deg);
-}
-
 .user-row {
     text-align:center;
 }
@@ -98,4 +66,45 @@ textarea {
 	padding: 2px 5px;
 	border-radius: 50%;
 	min-width: 32px;
+}
+
+.lottoCircles>h1 {
+    text-align:center;
+}
+
+.lottoCircles .col-md-4{
+    padding:20px;
+    text-align:center;
+    border-left:1px solid #c6c6c6;
+    border-top:1px solid #c6c6c6;
+}
+
+.lottoCircles .col-md-4 > p {
+    padding-top:4px;
+}
+
+.lottoCircles .row:last-child .col-md-4 {
+    border-bottom:1px solid #c6c6c6;
+}
+
+.lottoCircles .row .col-md-4:last-child {
+    border-right:1px solid #c6c6c6;
+}
+
+
+.bg {
+  background:  url(Media/bkg1.jpg) no-repeat center center;
+  position: fixed;
+  width: 100%;
+  height: 350px; /*same height as jumbotron */
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+.jumbotron {
+  height: 350px;
+  color: white;
+  text-shadow: #444 0 1px 1px;
+  background:transparent;
 }
