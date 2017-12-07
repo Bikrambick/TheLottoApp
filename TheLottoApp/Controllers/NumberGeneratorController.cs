@@ -48,40 +48,45 @@ namespace TheLottoApp.Controllers
             int flag_for_odds = 0;
             if (model.NumberOfOdds == -1)
             {
-                flag_for_odds = 1;
+                flag_for_odds = 0;
             }
-            else { flag_for_odds = 0; }
+            else { flag_for_odds = 1; }
            
             var nb_less_15 = model.NumbersBelow15;
             int flag_for_15 = 0;
             if (model.NumbersBelow15 == -1)
             {
-                flag_for_15 = 1;
+                flag_for_15 = 0;
             }
-            else { flag_for_15 = 0; }
+            else { flag_for_15 = 1; }
             
             var nb_middle =model.NumbersBelow15And30;
             int  flag_middle = 0;
 
             if (model.NumbersBelow15And30 == -1)
             {
-                flag_middle = 1;
+                flag_middle = 0;
             }
-            else { flag_middle = 0; }
+            else { flag_middle = 1; }
 
             
             var nb_bigger_30 = model.NumbersAbove30;
             int flag_for_30 = 0;
             if(model.NumbersAbove30 == -1)
             {
-                flag_for_30 = 1;
+                flag_for_30 = 0;
             }
-            else { flag_for_30 = 0; }
+            else { flag_for_30 = 1; }
             
             // List<double> score_range = new List<double> { 0.01, 0.03 };
             var flag_for_score_range = 1;
             var prev_rep_numb =model.NumbersOfPreviousRepeat;
             var flag_for_prev_num = 0;
+            if (model.NumbersOfPreviousRepeat == -1)
+            {
+                flag_for_prev_num = 0;
+            }
+            else { flag_for_30 = 1; }
             string nb_to_inc = string.Empty;
             if (string.IsNullOrEmpty(model.NumbersToInclude))
             {
@@ -110,9 +115,14 @@ namespace TheLottoApp.Controllers
                                  , nb_less_15, flag_for_15, nb_middle, flag_middle, nb_bigger_30, flag_for_30
                                  , ScoreVeryRange, flag_for_score_range, prev_rep_numb, flag_for_prev_num
                                  , nb_to_inc, nb_to_excl, nb_of_games, filePathHistory);
-                if(results != null)
+                if(results is string)
                 {
-                    
+                    return Json(new { GeneratedSet = results }, JsonRequestBehavior.AllowGet);
+                }
+
+                if (results != null)
+                {
+                   
                     foreach (var item in results)
                     {
                         if (item != null)

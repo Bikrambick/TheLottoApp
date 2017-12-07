@@ -97,7 +97,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="downsize">Number of games</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "-1", min="1" })
+                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "10", min="1" })
                                 
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -130,7 +130,14 @@
     $('#slider-input').slider({});
       
     $(".numberOfOddsInput").click(function () {
-        //$(this).parent().children('input').val(-1);
+        $(this).parent().children('input').val(-1);
+        if ($('.numberOfOddsInput').is(':checked')) {
+            $('#txt').val('checked');
+            $(this).parent().children('input').first().val("-1");
+        }
+        else {
+            $(this).parent().children('input').first().val("0");
+        }
         $(this).parent().children('input').first().toggle("disabled");
         
     })
@@ -142,21 +149,26 @@
     })
 
     function getresult(data) {
-        console.log(data.GeneratedSet.length);
-        if (data != null || data != "Server Error!!!") {
-           
-            for (i = 0; i < data.GeneratedSet.length; i++) {
-                var wrapper = document.createElement('div');
-                wrapper.setAttribute('id', 'generated_number');
-                var spanWrapper = "";
-                $.each(data.GeneratedSet[i], function (index, val) {
-                    spanWrapper+= "<span class='number'>" + val + "</span>\n";
-                })
-                wrapper.innerHTML = spanWrapper;
-                $('#GeneratedSetWrapper').append(wrapper);
+        try {
+            json = $.parseJSON(data.GeneratedSet)
+            if (data != null || data != "Server Error!!!") {
+
+                for (i = 0; i < data.GeneratedSet.length; i++) {
+                    var wrapper = document.createElement('div');
+                    wrapper.setAttribute('id', 'generated_number');
+                    var spanWrapper = "";
+                    $.each(data.GeneratedSet[i], function (index, val) {
+                        spanWrapper += "<span class='number'>" + val + "</span>\n";
+                    })
+                    wrapper.innerHTML = spanWrapper;
+                    $('#GeneratedSetWrapper').append(wrapper);
+                }
+
             }
-            
-        }
+        } catch (e) {
+            $('#GeneratedSetWrapper').append("<div class='alert alert-danger'>"+data.GeneratedSet+"</div>");
+        };
+       
     };
     </script>
 }
