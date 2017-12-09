@@ -16,17 +16,7 @@ namespace TheLottoApp.Controllers
         {
             return View();
         }
-        //public void TestPythonInterface()
-        //{
-        //    var rootPythonDir = Server.MapPath("../PyFiles/");
-        //    var pathToLib = Server.MapPath("../PyFiles/Lib");
-        //    var pathToPyFile = Server.MapPath("../PyFiles/twelve_version_for_iron_python.py");
-        //    DataAccess.PythonInterface IPyInterface = new PythonInterface(pathToLib,pathToPyFile);
-        //    try
-        //    {
-        //        var result = IPyInterface.CallFunction("get_set");
-        //    }catch(Exception ex) { }
-        //}
+        
         [HttpPost]
         public JsonResult GenerateNumber(NumberGeneratorViewModel model)
         {
@@ -79,14 +69,19 @@ namespace TheLottoApp.Controllers
             else { flag_for_30 = 1; }
             
             // List<double> score_range = new List<double> { 0.01, 0.03 };
-            var flag_for_score_range = 1;
+            var flag_for_score_range = 0;
+            if (string.IsNullOrEmpty(model.ScoreRange))
+            {
+                flag_for_score_range = 0;
+            }
+            else { flag_for_score_range = 1; }
             var prev_rep_numb =model.NumbersOfPreviousRepeat;
             var flag_for_prev_num = 0;
             if (model.NumbersOfPreviousRepeat == -1)
             {
                 flag_for_prev_num = 0;
             }
-            else { flag_for_30 = 1; }
+            else { flag_for_prev_num = 1; }
             string nb_to_inc = string.Empty;
             if (string.IsNullOrEmpty(model.NumbersToInclude))
             {
@@ -125,7 +120,8 @@ namespace TheLottoApp.Controllers
                    
                     foreach (var item in results)
                     {
-                        if (item != null)
+                        if(item is string) { return Json(new { GeneratedSet = item }, JsonRequestBehavior.AllowGet); }
+                        if (item != null )
                         {
                             GeneratedNumberSetEachGame = new List<int>();
                             foreach (var itemX in item)

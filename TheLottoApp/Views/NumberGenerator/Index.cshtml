@@ -1,7 +1,7 @@
 ﻿@using TheLottoApp.Models
 @model NumberGeneratorViewModel
 @{
-    ViewBag.Title = "Lucy Number Generator";
+    ViewBag.Title = "Lotto Number Generator";
 }
 @*<script src="~/Scripts/Custom/RangeSlider.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />*@
@@ -24,9 +24,30 @@
                     {
                         @Html.AntiForgeryToken();
                         <div class="form-group">
+                            <label class="col-md-5 control-label" for="age">I want to play</label>
+                            <div class="col-md-7">
+                                <div class="btn-group">
+                                    <select name="" id="" class="btn btn-lg btn-info" required="">
+                                        <option value="">Select</option>
+                                        <option value="1">Monday Lotto</option>
+                                        <option value="2" selected>OZ Lotto</option>
+                                        <option value="3">Wednesday Lotto</option>
+                                        <option value="4">Powerball</option>
+                                        <option value="5">Saturday TattsLotto</option>
+                                        <option value="6">Set for Life</option>
+                                        <option value="7">The Pools</option>
+                                        <option value="8">Super 66</option>
+                                        <option value="9">Cash 3</option>
+
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
+                            <hr />
+                        <div class="form-group">
                             <label class="col-md-5 control-label" for="age">Number of Odds</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control"}) 
+                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control", @placeholder = "0" }) 
                                <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter"/>
                                 @*@Html.ValidationMessageFor(m => m.NumberOfOdds, "Please enter number of odds", new { @class = "text-danger" })*@
                             </div>
@@ -34,7 +55,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control"})
+                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control", @placeholder = "0" })
                                 
                                 
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
@@ -43,7 +64,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers between 15 and 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control", @value = "-1" })
+                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control", @value = "-1", @placeholder = "0" })
                                
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
@@ -51,7 +72,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers above 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control", @value = "-1" })
+                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control", @value = "-1", @placeholder = "0" })
                                 
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
@@ -64,7 +85,7 @@
                                  <b>&nbsp;&nbsp;2.65</b>*@
                                 <b>1.8&nbsp;&nbsp;</b> @Html.TextBoxFor(x => x.ScoreRange, new { id = "slider-input", @type = "text",
                                                       @class = "form-control", @value = "", data_slider_min = "0.018",
-                                               data_slider_max = "0.0265", data_slider_step = "0.002", data_slider_value = "[0.018,0.0265]" })
+                                               data_slider_max = "0.028", data_slider_step = "0.002", data_slider_value = "[0.018,0.028]" })
                                 <b>&nbsp;&nbsp;2.65</b>
                                 <label class="numberOfOddsLabel">Doesn't matter</label>
                                  <input class="numberOfOddsRange" type="checkbox" value="doesnt matter" name="doenst matter" />
@@ -73,7 +94,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="status">Number of previous repeat</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersOfPreviousRepeat, new { @type = "number", @class = "form-control", @value = "-1" })
+                                @Html.TextBoxFor(x => x.NumbersOfPreviousRepeat, new { @type = "number", @class = "form-control", @value = "-1", @placeholder = "0" })
                                
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
@@ -81,7 +102,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to include</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberstoinclude" type="text" placeholder="Enter comma separated data" id="numberstoinclude" name="numberstoinclude" />
+                                <input class="form-control" name="numberstoinclude" type="text" placeholder="Enter comma separated data" id="numberstoinclude"  />
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -89,7 +110,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to exclude</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberstoexclude" type="text" placeholder="Enter comma separated data" id="numberstoexclude" name="numberstoexclude" />
+                                <input class="form-control" name="numberstoexclude" type="text" placeholder="Enter comma separated data" id="numberstoexclude"  />
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -97,7 +118,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="downsize">Number of games</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "10", min="1" })
+                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "10", min="1", @placeholder = "10" })
                                 
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -105,7 +126,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-4">
-                                <input type="submit" value="Calculate" class="btn pull-right btn-primary" id="calculate">
+                                <input type="submit" value="Generate" class="btn pull-right btn-primary btn-lg" id="calculate">
                             </div>
                         </div>
                     }
@@ -113,7 +134,6 @@
             </div>
         </div>
         <div class="col-md-5 col-md-offset-1">
-            <h4 style="text-align:center;">My generated sets</h4>
             <div id="GeneratedSetWrapper">
 
             </div>
@@ -149,10 +169,13 @@
     })
 
     function getresult(data) {
-        try {
-            json = $.parseJSON(data.GeneratedSet)
+        var myNode = document.getElementById("GeneratedSetWrapper");
+        while (myNode.firstChild) {
+            myNode.removeChild(myNode.firstChild);
+        }
+        if (typeof data.GeneratedSet != 'string') {
             if (data != null || data != "Server Error!!!") {
-
+                
                 for (i = 0; i < data.GeneratedSet.length; i++) {
                     var wrapper = document.createElement('div');
                     wrapper.setAttribute('id', 'generated_number');
@@ -165,9 +188,10 @@
                 }
 
             }
-        } catch (e) {
+        } else  {
             $('#GeneratedSetWrapper').append("<div class='alert alert-danger'>"+data.GeneratedSet+"</div>");
         };
+        $("html, body").animate({ scrollTop: 0 }, 200);
        
     };
     </script>

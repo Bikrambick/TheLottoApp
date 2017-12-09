@@ -49,7 +49,7 @@ class get_the_number:
             ## checking constraints for score
             if score_range[-1] - score_range[0] < (0.001):
                 return 'Too narrow score range: increase it or drop the filter for score range.'
-            if score_range[-1] < 0.0230  and nb_of_games > 20:
+            if score_range[-1] < 0.0220  and nb_of_games > 20:
                 return 'The top range marker is set too low for this number of games, please,\
                 increase the interval or decrease the number of games to below 20.'
                 
@@ -65,6 +65,9 @@ class get_the_number:
                 for num in range(7-len(nb_to_inc.split(','))):
                     total_comb = total_comb * left_balls
                     left_balls -=1
+                for num in nb_to_inc.split(','):
+                    if int(num) >45 or int(num) <1:
+                        return 'You can only include numbers between 1 and 45'
                 if total_comb < nb_of_games:
                     return 'Too may constraints to generate '+str(nb_of_games) + ' games. \
                     Eliminate some numbers from field "numbers to include"'
@@ -89,7 +92,7 @@ class get_the_number:
                 if nb_of_odds >7:
                     return 'You are requiring too many odds'
                 if flag_for_prev_rep_num:
-                    print('Previous game: ',maxresult.numbers.split(','))
+                 #   print('Previous game: ',maxresult.numbers.split(','))
                     all_n =  [int(x)%2==1 for x in maxresult.numbers.split(',')]
                     if (7 - prev_rep_numb + min(sum(all_n), prev_rep_numb)) < nb_of_odds:
                               return 'Not enough odd numbers in previous game or \
@@ -212,13 +215,21 @@ class get_the_number:
                     
             ######################################
             ## generator
-            max_iter = 200000
+            max_iter = 300000
             generated_list = []
             #print(maxresult.numbers.split(','))
             for i in range(nb_of_games):
                 counter = 0
                 while True:
-                    List = random.sample(range(1,46),7)
+                    if flag_for_prev_rep_num:
+                        List1 = random.sample([int(y) for y in maxresult.numbers.split(',')],prev_rep_numb)
+                        List2 = random.sample([x for x in range(1,46) if x not in List1],7-prev_rep_numb)
+                        if len(List1) + len(List2) ==7:
+                            List = List1 + List2
+                        else:
+                            return 'wrong list concaenationt'
+                    else:
+                        List = random.sample(range(1,46),7)
                     if flag_for_nb_less_first:
                         if sum([x<=15 for x in List]) !=nb_less_first:
                             counter +=1
@@ -244,7 +255,7 @@ class get_the_number:
                                 return 'Too tight constraints', generated_list
                             continue
                     if flag_for_prev_rep_num:
-                        if sum([str(x) in maxresult.numbers.split(',') for x in List]) != prev_rep_numb:
+                        if sum([x in [int(y) for y in maxresult.numbers.split(',')] for x in List]) != prev_rep_numb:
                             counter +=1
                             if counter > max_iter:
                                 return 'Too tight constraints', generated_list
@@ -263,8 +274,9 @@ class get_the_number:
                             continue
                     if flag_for_score_range:
                         for ball in List:
-                            setscore = setscore + score_dict[str(ball)]/count
+                            setscore = setscore + score_dict[str(ball)]
                         setscore = setscore / len(List)
+                        setscore= setscore/count
                         #print(setscore)
                         if setscore > score_range[-1] or sum(List) < score_range[0]:
                             counter +=1
