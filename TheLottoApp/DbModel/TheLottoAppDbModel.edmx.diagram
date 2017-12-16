@@ -28,6 +28,8 @@
         <AssociationConnector Association="TheLottoAppDbModel.FK_tblLottery_tblLottery" ManuallyRouted="false" />
         <AssociationConnector Association="TheLottoAppDbModel.FK_tblResults_tblLottery" ManuallyRouted="false" />
         <AssociationConnector Association="TheLottoAppDbModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TheLottoAppDbModel.tblAddress" Width="1.5" PointX="10.25" PointY="13.375" />
+        <AssociationConnector Association="TheLottoAppDbModel.FK_tblAddress_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -79,6 +79,10 @@ namespace TheLottoApp.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+       
+        public IEnumerable<System.Web.Mvc.SelectListItem> SubscriptionOption { get; set; }
+        [Required]
+        public string SelectedSubscription { get; set; }
     }
 
     public class ResetPasswordViewModel

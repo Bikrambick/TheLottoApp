@@ -22,6 +22,10 @@ namespace TheLottoApp.DbModel
     
         public string Id { get; set; }
         public string Name { get; set; }
+        public Nullable<int> Susbcription_Period { get; set; }
+        public Nullable<double> Subscription_Price { get; set; }
+        public Nullable<int> Allowed_Numbers { get; set; }
+        public Nullable<int> Allowed_Tickets { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }

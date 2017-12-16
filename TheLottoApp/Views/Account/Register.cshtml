@@ -16,6 +16,9 @@
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "input-email", placeholder = "Email address" })
             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })   
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+
+            @Html.DropDownListFor(m => m.SelectedSubscription, Model.SubscriptionOption, "Select Level", new { @class = "form-control" })<br />
+
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
         }
     </div><!-- /card-container -->
