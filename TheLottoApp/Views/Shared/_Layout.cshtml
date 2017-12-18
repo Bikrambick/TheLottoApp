@@ -6,9 +6,33 @@
     <title>@ViewBag.Title - Lotto</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
+    <div class="top-navigation hidden-sm hidden-xs">
+        <div class="container">
+            <div class="row">             
+                <div class="col-md-9">
+                    @Html.ActionLink("Lotto", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="text" placeholder="Username" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Password" class="form-control" />
+                        </div>
+                      
+                         <input tpye="submit" value="Login" class="btn btn-sm btn-primary">
+                        <input tpye="submit" value="SignUp" class="btn btn-sm btn-success">
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <div id="google_translate_element" class="pull-right"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,12 +41,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Lotto", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Home", "#", "Home", new {@class="hidden-md hidden-lg" })</li>
+                    <li>@Html.ActionLink("Syndicate", "#", "Home")</li>
+                    <li>@Html.ActionLink("Bundles", "#", "Home")</li>
+                    <li>@Html.ActionLink("Results", "#", "Home")</li>
+                    <li>@Html.ActionLink("Stats", "#", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -35,5 +62,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+           function googleTranslateElementInit() {
+               new google.translate.TranslateElement({ pageLanguage: 'en-au', defaultLanguage:'en-au',layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+           }
+    </script>
 </body>
 </html>

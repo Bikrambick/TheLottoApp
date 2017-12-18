@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -212,4 +213,66 @@ textarea {
 
 .forgot-password {
     color: rgb(104, 145, 162);
+}
+
+.top-navigation {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 1030;
+    padding:10px;
+}
+
+    .top-navigation .btn-sm {
+    max-width: 74px;
+    }
+
+.navbar-fixed-top {
+    top:52px;
+}
+
+.goog-te-gadget-simple {
+    border-radius:4px;
+    background-color: #fff;
+    border-left: 1px solid #cccccc !important;
+    border-top: 1px solid #cccccc !important;
+    border-bottom: 1px solid #cccccc !important;
+    border-right: 1px solid #cccccc !important;
+    font-size: 10pt;
+    display: inline-block;
+    padding-top: 4px !important;
+    padding-bottom: 7px !important;
+    cursor: pointer;
+    zoom: 1;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+}
+
+#home-container {
+    margin-top:72px;
+    margin-bottom: -72px;
+}
+
+.navbar-brand {
+    padding: 8px 15px;
+}
+
+.goog-te-banner-frame {
+    display:none;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .navbar-fixed-top {
+        top: 0px;
+    }
+}
+
+
+@media (max-width: 767px){
+  .navbar-fixed-top {
+        top: 0px;
+    }
 }
