@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;

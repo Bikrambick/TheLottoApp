@@ -7,18 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblBallLottery
+    public partial class tblTicket
     {
-        public int BallNumber { get; set; }
-        public Nullable<int> LotteryID { get; set; }
-        public Nullable<int> NbTimesOccured { get; set; }
-        public Nullable<int> Score { get; set; }
-    
-        public virtual tblLottery tblLottery { get; set; }
+        public string Lottery { get; set; }
+        public Nullable<System.DateTime> DatePlay { get; set; }
+        public Nullable<System.DateTime> DateBuy { get; set; }
+        public string Combination { get; set; }
+        public string Vendor { get; set; }
+        public string Buyer { get; set; }
+        public int LTID { get; set; }
     }
 }

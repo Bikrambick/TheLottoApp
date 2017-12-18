@@ -7,15 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCombination
+    public partial class C__MigrationHistory
     {
-        public string Numbers { get; set; }
-        public int CombID { get; set; }
-        public Nullable<int> SetID { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

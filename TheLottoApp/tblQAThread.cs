@@ -7,17 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogin
+    public partial class tblQAThread
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
-        public string UserId { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
+        public Nullable<System.DateTime> DateTimeOpen { get; set; }
+        public string Topic { get; set; }
+        public string OpenUser { get; set; }
+        public int QAThreadID { get; set; }
     }
 }

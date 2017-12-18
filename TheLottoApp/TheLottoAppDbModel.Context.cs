@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TheLottoAppDbEntities : DbContext
+    public partial class TheLottoAppDbEntity : DbContext
     {
-        public TheLottoAppDbEntities()
-            : base("name=TheLottoAppDbEntities")
+        public TheLottoAppDbEntity()
+            : base("name=TheLottoAppDbEntity")
         {
         }
     
@@ -30,6 +30,7 @@ namespace TheLottoApp.DbModel
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<tblAddress> tblAddresses { get; set; }
         public virtual DbSet<tblBallLottery> tblBallLotteries { get; set; }
         public virtual DbSet<tblCombination> tblCombinations { get; set; }
         public virtual DbSet<tblGeneratedSet> tblGeneratedSets { get; set; }

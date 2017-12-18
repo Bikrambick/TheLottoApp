@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TheLottoApp.Models.MyProfileViewModel>
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyProfile</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalWin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalNumberGenerated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastGeneratedNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subscription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalWin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalNumberGenerated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastGeneratedNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subscription)
+        </td>
+       
+    </tr>
+}
+
+</table>

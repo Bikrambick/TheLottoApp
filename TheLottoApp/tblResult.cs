@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class tblResult
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public Nullable<int> LotteryID { get; set; }
+        public Nullable<System.DateTime> ResultDate { get; set; }
+        public string NumberSet { get; set; }
+        public int ResultID { get; set; }
+    
+        public virtual tblLottery tblLottery { get; set; }
     }
 }

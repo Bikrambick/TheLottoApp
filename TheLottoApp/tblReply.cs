@@ -7,21 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblUser
+    public partial class tblReply
     {
         public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string SelectedPlan { get; set; }
-        public Nullable<double> UserType { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
-        public Nullable<int> NbWon { get; set; }
-        public string WealthEst { get; set; }
+        public Nullable<int> QAThread { get; set; }
+        public Nullable<System.DateTime> DateTime { get; set; }
+        public string Text { get; set; }
+        public int ReplyID { get; set; }
     }
 }

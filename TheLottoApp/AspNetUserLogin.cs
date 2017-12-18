@@ -7,19 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblTicket
+    public partial class AspNetUserLogin
     {
-        public string Lottery { get; set; }
-        public Nullable<System.DateTime> DatePlay { get; set; }
-        public Nullable<System.DateTime> DateBuy { get; set; }
-        public string Combination { get; set; }
-        public string Vendor { get; set; }
-        public string Buyer { get; set; }
-        public int LTID { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

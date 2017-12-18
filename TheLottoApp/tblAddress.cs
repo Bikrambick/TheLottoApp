@@ -7,14 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheLottoApp.DbModel
+namespace TheLottoApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblUserType
+    public partial class tblAddress
     {
+        public string ZipCode { get; set; }
+        public string Country { get; set; }
+        public string Suburb { get; set; }
+        public string SreetNumber { get; set; }
+        public Nullable<bool> Validity { get; set; }
+        public string UserID { get; set; }
         public int Id { get; set; }
-        public string Title { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }
