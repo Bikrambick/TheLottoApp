@@ -10,6 +10,7 @@ namespace TheLottoApp.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 

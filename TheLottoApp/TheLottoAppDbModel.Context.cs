@@ -43,5 +43,6 @@ namespace TheLottoApp
         public virtual DbSet<tblTicket> tblTickets { get; set; }
         public virtual DbSet<tblUserType> tblUserTypes { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tblLottoHistory> tblLottoHistories { get; set; }
     }
 }

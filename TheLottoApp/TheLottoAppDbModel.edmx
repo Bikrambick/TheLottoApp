@@ -138,6 +138,15 @@
           <Property Name="LotteryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TotalNbBalls" Type="int" />
         </EntityType>
+        <EntityType Name="tblLottoHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lotto_Id" Type="int" />
+          <Property Name="Draw_Date" Type="datetime" />
+          <Property Name="Winning_Numbers" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="tblPlan">
           <Key>
             <PropertyRef Name="PlanID" />
@@ -357,6 +366,7 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
           <EntitySet Name="tblCombination" EntityType="Self.tblCombination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGeneratedSet" EntityType="Self.tblGeneratedSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblLottery" EntityType="Self.tblLottery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLottoHistory" EntityType="Self.tblLottoHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPlan" EntityType="Self.tblPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblQAThread" EntityType="Self.tblQAThread" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblReply" EntityType="Self.tblReply" Schema="dbo" store:Type="Tables" />
@@ -769,7 +779,17 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="tblLottoHistories" EntityType="TheLottoAppDbModel.tblLottoHistory" />
         </EntityContainer>
+        <EntityType Name="tblLottoHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lotto_Id" Type="Int32" />
+          <Property Name="Draw_Date" Type="DateTime" Precision="3" />
+          <Property Name="Winning_Numbers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1006,6 +1026,16 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="tblLottoHistories">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblLottoHistory">
+              <MappingFragment StoreEntitySet="tblLottoHistory">
+                <ScalarProperty Name="Winning_Numbers" ColumnName="Winning_Numbers" />
+                <ScalarProperty Name="Draw_Date" ColumnName="Draw_Date" />
+                <ScalarProperty Name="Lotto_Id" ColumnName="Lotto_Id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

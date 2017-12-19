@@ -185,6 +185,7 @@
       <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminConsoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NumberGeneratorController.cs" />
@@ -216,6 +217,9 @@
       <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblLottery.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLottoHistory.cs">
       <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPlan.cs">
@@ -341,6 +345,9 @@
       <DependentUpon>TheLottoAppDbModel.edmx</DependentUpon>
     </Content>
     <Content Include="Views\UserManagement\MyProfile.cshtml" />
+    <Content Include="Views\AdminConsole\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\AdminConsole\EnterWinningNumbers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
