@@ -6,18 +6,20 @@
 @*<script src="~/Scripts/Custom/RangeSlider.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />*@
 <link href="~/css/bootstrap-slider.min.css" rel="stylesheet" />
-<link href ="~/Content/Site.css" rel="stylesheet" />
+
 
 <!--Calculator Area-->
 <hr />
-<div class="container">
+
+
+
+
+<div class="container calculatorContainer">
     <div class="row">
         <div class="col-md-6 effect8">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="row-fluid user-row">
-                        <img src="~/Content/Media/setup.png" alt="Conxole Admin"/>
-                    </div>
+                   <label>Pick your choices</label>
                 </div>
                 <div class="panel-body">
                     @using (Ajax.BeginForm("GenerateNumber", "NumberGenerator", new AjaxOptions() { OnSuccess = "getresult", HttpMethod = "post" }, new { enctype = "multipart/form-data", @class = "form form-horizontal", data_toggle = "validator" }))
@@ -27,7 +29,7 @@
                             <label class="col-md-5 control-label" for="age">I want to play</label>
                             <div class="col-md-7">
                                 <div class="btn-group">
-                                    <select name="" id="" class="btn btn-lg btn-info" required="">
+                                    <select name="" id="" class="btn btn-success" required="">
                                         <option value="">Select</option>
                                         <option value="1">Monday Lotto</option>
                                         <option value="2" selected>OZ Lotto</option>
@@ -47,32 +49,28 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="age">Number of Odds</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control", @placeholder = "0" }) 
-                               <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter"/>
-                                @*@Html.ValidationMessageFor(m => m.NumberOfOdds, "Please enter number of odds", new { @class = "text-danger" })*@
+                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control input-sm", @placeholder = "0" }) 
+                               <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput checkbox-primary" type="checkbox" value="doesnt matter" name="doenst matter"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control", @placeholder = "0" })
-                                
-                                
+                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control input-sm", @placeholder = "0" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers between 15 and 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control", @value = "-1", @placeholder = "0" })
-                               
+                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control input-sm", @value = "-1", @placeholder = "0" })          
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers above 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control", @value = "-1", @placeholder = "0" })
+                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control input-sm", @value = "-1", @placeholder = "0" })
                                 
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
@@ -94,7 +92,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="status">Number of previous repeat</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersOfPreviousRepeat, new { @type = "number", @class = "form-control", @value = "-1", @placeholder = "0" })
+                                @Html.TextBoxFor(x => x.NumbersOfPreviousRepeat, new { @type = "number", @class = "form-control input-sm", @value = "-1", @placeholder = "0" })
                                
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
@@ -102,7 +100,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to include</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberstoinclude" type="text" placeholder="Enter comma separated data" id="numberstoinclude"  />
+                                <input class="form-control input-sm" name="numberstoinclude" type="text" placeholder="Enter comma separated data" id="numberstoinclude"  />
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -110,7 +108,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to exclude</label>
                             <div class="col-md-7">
-                                <input class="form-control" name="numberstoexclude" type="text" placeholder="Enter comma separated data" id="numberstoexclude"  />
+                                <input class="form-control input-sm" name="numberstoexclude" type="text" placeholder="Enter comma separated data" id="numberstoexclude"  />
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -118,7 +116,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="downsize">Number of games</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control", @value = "10", min="1", @placeholder = "10" })
+                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control input-sm", @value = "10", min="1", @placeholder = "10" })
                                 
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -194,6 +192,7 @@
         $("html, body").animate({ scrollTop: 0 }, 200);
        
     };
+   
     </script>
 }
 
