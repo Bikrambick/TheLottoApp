@@ -27,6 +27,8 @@ namespace TheLottoApp.Models
 
         public int NumberOfGames { get; set; }
 
+        public int LottoId { get; set; }
+
 
     }
 }

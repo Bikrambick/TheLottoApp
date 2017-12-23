@@ -225,6 +225,15 @@ warning 6002: The table/view 'TheLottoAppDb.dbo.tblUser' does not have a primary
           <Property Name="NbWon" Type="int" />
           <Property Name="WealthEst" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tblUserGeneratedTickets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="Ticket_Generated_Date" Type="datetime" />
+          <Property Name="Total_Tickets_Generated" Type="int" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'TheLottoAppDb.dbo.tblUserPlan' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="tblUserPlan">
@@ -373,6 +382,7 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
           <EntitySet Name="tblResults" EntityType="Self.tblResults" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblServiceTicket" EntityType="Self.tblServiceTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTicket" EntityType="Self.tblTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserGeneratedTickets" EntityType="Self.tblUserGeneratedTickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -780,6 +790,7 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="tblLottoHistories" EntityType="TheLottoAppDbModel.tblLottoHistory" />
+          <EntitySet Name="tblUserGeneratedTickets" EntityType="TheLottoAppDbModel.tblUserGeneratedTicket" />
         </EntityContainer>
         <EntityType Name="tblLottoHistory">
           <Key>
@@ -789,6 +800,15 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
           <Property Name="Lotto_Id" Type="Int32" />
           <Property Name="Draw_Date" Type="DateTime" Precision="3" />
           <Property Name="Winning_Numbers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblUserGeneratedTicket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Ticket_Generated_Date" Type="DateTime" Precision="3" />
+          <Property Name="Total_Tickets_Generated" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1033,6 +1053,16 @@ error 6004: The table 'TheLottoAppDb.dbo.tblUserPlan' is referenced by a relatio
                 <ScalarProperty Name="Draw_Date" ColumnName="Draw_Date" />
                 <ScalarProperty Name="Lotto_Id" ColumnName="Lotto_Id" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserGeneratedTickets">
+            <EntityTypeMapping TypeName="TheLottoAppDbModel.tblUserGeneratedTicket">
+              <MappingFragment StoreEntitySet="tblUserGeneratedTickets">
+                <ScalarProperty Name="Total_Tickets_Generated" ColumnName="Total_Tickets_Generated" />
+                <ScalarProperty Name="Ticket_Generated_Date" ColumnName="Ticket_Generated_Date" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

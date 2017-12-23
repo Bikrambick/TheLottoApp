@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Statistical Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+          $.ajax({
+                type: "POST",
+                url: "/ChartGenerator/GenerateChart",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    console.log(r);
+                    var data = google.visualization.arrayToDataTable(r[0]);
+                    var prevrepeat = google.visualization.arrayToDataTable(r[1]);
+                    var prevOdd = google.visualization.arrayToDataTable(r[2]);
+                    //numbers repeat
+                    var barchart_options = {
+                        title: 'Freequency of Occurance ',
+                        width: 500,
+                        height:600,
+                        legend: 'none'};
+                    var barchart = new google.visualization.BarChart(document.getElementById('chart_div'));
+                    barchart.draw(data, barchart_options);
+
+                    //previous repeat
+                    var previousRepeat_options = {
+                        title: 'Repeated Previous Numbers',
+                        width: 500,
+                        height: 600,
+                        legend: 'none'
+                    };
+                    var barchart = new google.visualization.BarChart(document.getElementById('chart_div_prev_repeat'));
+                    barchart.draw(prevrepeat, previousRepeat_options);
+
+                    //previous odd
+                    var previousOdd_options = {
+                        title: 'Freequency of Odd numbers',
+                        width: 500,
+                        height: 600,
+                        legend: 'none'
+                    };
+                    var barchart = new google.visualization.BarChart(document.getElementById('chart_div_prev_odd'));
+                    barchart.draw(prevOdd, previousOdd_options);
+                
+                },
+                failure: function (r) {
+                    alert(r.d);
+                },
+                error: function (r) {
+                    alert(r.d);
+                }
+            });
+      }
+</script>
+    <!--Div that will hold the pie chart-->
+    @*<div id="chart_div" style="margin-top:50px;"></div>*@
+    <table class="columns" style="margin-top:50px;">
+        <tr>
+            <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
+            <td><div id="chart_div_prev_repeat" style="border: 1px solid #ccc"></div></td>
+            <td><div id="chart_div_prev_odd" style="border: 1px solid #ccc"></div></td>
+        </tr>
+    </table>
+
+

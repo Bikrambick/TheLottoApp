@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminConsoleController.cs" />
+    <Compile Include="Controllers\ChartGeneratorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NumberGeneratorController.cs" />
@@ -197,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CharGeneratorModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyProfileViewModel.cs" />
@@ -243,6 +245,9 @@
     <Compile Include="tblUser.cs">
       <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblUserGeneratedTicket.cs">
+      <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblUserType.cs">
       <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
     </Compile>
@@ -273,6 +278,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="PyFiles\first.py" />
     <Content Include="PyFiles\ozzhistory.txt" />
+    <Content Include="PyFiles\stastic_engine.py" />
     <Content Include="PyFiles\twelve_version_for_iron_python.py" />
     <Content Include="Scripts\bootstrap-slider.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -348,6 +354,7 @@
     <Content Include="Views\AdminConsole\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminConsole\EnterWinningNumbers.cshtml" />
+    <Content Include="Views\ChartGenerator\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
