@@ -1,0 +1,124 @@
+﻿
+@using TheLottoApp.Models
+@model BasicGeneratorModel
+@{
+    ViewBag.Title = "Basic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Basic</h2>
+@using (Ajax.BeginForm("GenerateBasic", "NumberGenerator", new AjaxOptions() { OnSuccess = "getresult", HttpMethod = "post" }, new { enctype = "multipart/form-data", @class = "form form-horizontal", data_toggle = "validator" }))
+{
+    
+        <div class="container">
+            <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label class="btn btn-primary">
+                                <img src="~/Content/Media/str_Balanced.gif" alt="Balanced" class="img-thumbnail img-check">
+                                @Html.CheckBoxFor(x=>x.balanced, new { @id = "Balanced", @class = "hidden", @autocomplete = "off" })
+                              </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="btn btn-primary">
+                                <img src="~/Content/Media/str_best_score.gif" alt="BestScore" class="img-thumbnail img-check">
+                                @Html.CheckBoxFor(x => x.bestScore, new { @id = "BestScore", @class = "hidden", @autocomplete = "off" })
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="btn btn-primary">
+                                <img src="~/Content/Media/str_hot_numbers.gif" alt="HotNumbers" class="img-thumbnail img-check">
+                                @Html.CheckBoxFor(x => x.hotNumbers, new { @id = "HotNumbers", @class = "hidden", @autocomplete = "off" })
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="btn btn-primary">
+                                <img src="~/Content/Media/str_zero_repeats.gif" alt="ZeroRepeats" class="img-thumbnail img-check">
+                                @Html.CheckBoxFor(x => x.zeroRepeats, new { @id = "ZeroRepeats", @class = "hidden", @autocomplete = "off" })
+                            </label>
+                        </div>
+                    </div> 
+                <hr />
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="age">Number of Tickets</label>
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control input-sm", @placeholder = "0" })
+                        </div>
+                   </div>
+                    <div class="form-group">
+                        <label class="col-md-5 control-label" for="age">System</label>
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(x => x.system, new { @type = "number", @class = "form-control input-sm", @placeholder = "0" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-4">
+                            <input type="submit" value="Generate" class="btn pull-right btn-primary btn-lg" id="calculate">
+                        </div>
+                    </div>
+                             
+            </div>
+        </div>
+}
+<div class="row">
+    <div id="GeneratedSetWrapper">
+
+    </div>
+
+</div>
+<style type="text/css">
+    .check
+        {
+            opacity:0.5;
+	        color:#996;
+	
+         }
+    #GeneratedSetWrapper{
+        margin:0 auto;
+        width:700px;
+    }
+</style>
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/bootstrap-slider.min.js")
+    @Scripts.Render("~/bundles/jqueryunob")
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $(".img-check").click(function () {
+            $(this).toggleClass("check");
+        });
+    });
+    $('.hidden').on('change', function () {
+
+        $('.hidden').not(this).prop('checked', false);
+
+    });
+    function getresult(data) {
+        var myNode = document.getElementById("GeneratedSetWrapper");
+        while (myNode.firstChild) {
+            myNode.removeChild(myNode.firstChild);
+        }
+        if (typeof data.GeneratedSet != 'string') {
+            if (data != null || data != "Server Error!!!") {
+
+                for (i = 0; i < data.GeneratedSet.length; i++) {
+                    var wrapper = document.createElement('div');
+                    wrapper.setAttribute('id', 'generated_number');
+                    var spanWrapper = "";
+                    $.each(data.GeneratedSet[i], function (index, val) {
+                        spanWrapper += "<span class='number'>" + val + "</span>\n";
+                    })
+                    wrapper.innerHTML = spanWrapper;
+                    $('#GeneratedSetWrapper').append(wrapper);
+                }
+
+            }
+        } else {
+            $('#GeneratedSetWrapper').append("<div class='alert alert-danger'>" + data.GeneratedSet + "</div>");
+        };
+        $("html, body").animate({ scrollTop: 0 }, 200);
+
+    };
+</script>
+          }

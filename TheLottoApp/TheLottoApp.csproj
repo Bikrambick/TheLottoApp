@@ -52,8 +52,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Stripe.net, Version=11.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.11.9.0\lib\net45\Stripe.net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -117,9 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -190,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NumberGeneratorController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>TheLottoAppDbModel.tt</DependentUpon>
@@ -198,6 +205,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BasicGeneratorModel.cs" />
     <Compile Include="Models\CharGeneratorModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -276,12 +284,17 @@
     <Content Include="Content\Media\oz_lotto.png" />
     <Content Include="Content\Media\saturday_lotto.png" />
     <Content Include="Content\Media\setup.png" />
+    <Content Include="Content\Media\str_Balanced.gif" />
+    <Content Include="Content\Media\str_best_score.gif" />
+    <Content Include="Content\Media\str_hot_numbers.gif" />
+    <Content Include="Content\Media\str_zero_repeats.gif" />
     <Content Include="Content\Media\thursday_lotto.png" />
     <Content Include="Content\Media\tuesday_lotto.png" />
     <Content Include="css\bootstrap-slider.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="PyFiles\baic_engine.py" />
     <Content Include="PyFiles\first.py" />
     <Content Include="PyFiles\ozzhistory.txt" />
     <Content Include="PyFiles\stastic_engine.py" />
@@ -361,6 +374,9 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminConsole\EnterWinningNumbers.cshtml" />
     <Content Include="Views\ChartGenerator\Index.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\NumberGenerator\ShowSelection.cshtml" />
+    <Content Include="Views\NumberGenerator\Basic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -104,31 +104,6 @@ namespace TheLottoApp.Controllers
                 
             }
         }
-        public void CheckSetWeeklyTicketAllownces(string email)
-        {
-            
-            using (var db = new TheLottoAppDbEntity())
-            {
-
-                var userId = db.AspNetUsers.Where(x => x.Email == email).Select(x => x.Id).FirstOrDefault();
-                var existingRecord = db.tblUserGeneratedTickets.Where(x => x.User_Id == userId.ToString()).SingleOrDefault() ;
-                if(existingRecord != null)
-                {
-                    DateTime lastGeneratedDate = Convert.ToDateTime(existingRecord.Ticket_Generated_Date);
-                    var DaysSinceLastGenerated = DateTime.Now.Subtract(lastGeneratedDate).TotalDays;
-                    if (DaysSinceLastGenerated > 6)
-                    {
-                        existingRecord.Ticket_Generated_Date = DateTime.Now;
-                        existingRecord.Total_Tickets_Generated = 0;
-                        try
-                        {
-                            db.SaveChanges();
-                        }
-                        catch (Exception ex) { }
-                    }
-                }
-               
-            }
-        }
+      
     }
 }

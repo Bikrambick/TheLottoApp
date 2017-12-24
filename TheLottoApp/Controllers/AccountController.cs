@@ -80,8 +80,7 @@ namespace TheLottoApp.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var userController = new UserManagementController();
-                    userController.CheckSetWeeklyTicketAllownces(model.Email);
+                    
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
