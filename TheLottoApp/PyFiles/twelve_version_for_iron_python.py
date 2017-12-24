@@ -335,13 +335,14 @@ class get_the_number:
                     else:  
                         if flag_for_prev_rep_num:
                             List1 = random.sample([int(y) for y in maxresult.numbers.split(',')],prev_rep_numb)
-                            if len(nb_of_odds2) == 2 and set(nb_of_odds2) == set([0,system]) and flag_for_odds:
-                                if sum([x%2==1 for x in List1])>0:
-                                    nb_to_excl = nb_to_excl +',' + ','.join([str(x) for x in range(1,46) if x %2==0])
-                                elif sum([x%2==0 for x in List1])>0:
-                                    nb_to_excl = nb_to_excl +',' + ','.join([str(x) for x in range(1,46) if x %2==1])
-                                else:
-                                    continue
+                            if flag_for_odds:
+								if len(nb_of_odds2) == 2 and set(nb_of_odds2) == set([0,system]) and flag_for_odds:
+									if sum([x%2==1 for x in List1])>0:
+										nb_to_excl = nb_to_excl +',' + ','.join([str(x) for x in range(1,46) if x %2==0])
+									elif sum([x%2==0 for x in List1])>0:
+										nb_to_excl = nb_to_excl +',' + ','.join([str(x) for x in range(1,46) if x %2==1])
+									else:
+										continue
                             try:
                                 List2 = random.sample([x for x in range(1,46) if x not in List1 and str(x) not in nb_to_excl.split(',')],system-prev_rep_numb)
                             except:

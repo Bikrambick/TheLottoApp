@@ -203,6 +203,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyProfileViewModel.cs" />
     <Compile Include="Models\NumberGeneratorViewModel.cs" />
+    <Compile Include="Models\SubscriptionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="System\Web\MVC.cs" />
@@ -361,6 +362,8 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminConsole\EnterWinningNumbers.cshtml" />
     <Content Include="Views\ChartGenerator\Index.cshtml" />
+    <Content Include="Views\Shared\_NavigationPartial.cshtml" />
+    <Content Include="Views\Account\Subscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

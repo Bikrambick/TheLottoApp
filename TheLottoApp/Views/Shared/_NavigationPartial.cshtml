@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Log in";
+}
+
+<div class="top-navigation hidden-sm hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                @Html.ActionLink("Lotto", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken();
+                        <div class="form-group">
+                            <input type="text" placeholder="Username" class="form-control"  required/>
+                            @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Username" })*@
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" class="form-control"  required/>
+                            @*@Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })*@
+                        </div>
+                        <button tpye="submit" class="btn btn-sm btn-primary">Login</button>
+                        @*@Html.ActionLink("Signup", "Register", "Account", new { area = "" }, new { @class = "btn btn-sm btn-success" })*@
+                        <a class="btn btn-sm btn-success" href="/Account/Register">SignUp</a>
+                    }
+                }
+            </div>
+
+            <div class="col-md-3">
+                <div id="google_translate_element" class="pull-right"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

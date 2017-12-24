@@ -34,6 +34,15 @@ namespace TheLottoApp.Controllers
                 var one = double.Parse(scorerange[0]);
                 var two = double.Parse(scorerange[1]);
 
+                List<int> oddNumbers = new List<int>();
+                if (model.oddNumberForZero == true) { oddNumbers.Add(0); }
+                if (model.oddNumberForOne == true) { oddNumbers.Add(1); }
+                if (model.oddNumberForTwo== true) { oddNumbers.Add(2); }
+                if (model.oddNumberForThree == true) { oddNumbers.Add(3); }
+                if (model.oddNumberForFour == true) { oddNumbers.Add(4); }
+                if (model.oddNumberForFive == true) { oddNumbers.Add(5); }
+                if (model.oddNumberForSix == true) { oddNumbers.Add(6); }
+                if (model.oddNumberForSeven == true) { oddNumbers.Add(7); }
 
                 double[] ScoreVeryRange = { one, two };
                 object userid = 0;
@@ -55,6 +64,11 @@ namespace TheLottoApp.Controllers
                 var userSystem = userController.GetUserSystem(userSubscription);
                 
                 int systemNumbers = Convert.ToInt32(userSystem.Select(x => x.Allowed_Numbers).FirstOrDefault())+1;
+                if (model.system > systemNumbers)
+                {
+                    return Json(new { GeneratedSet = "Your chose exceeds the quota!!!" }, JsonRequestBehavior.AllowGet);
+                }
+
                 var totalAllowedTicket = Convert.ToInt32(userSystem.Select(x => x.Allowed_Tickets).FirstOrDefault());
 
                 int TotalTicketsToGenerated = 0;
@@ -67,16 +81,22 @@ namespace TheLottoApp.Controllers
                 
                 
                 int RemainingTicketsThisWeek = totalAllowedTicket-(TotalTicketsToGenerated + model.NumberOfGames);
-               
-                
-                
 
-                var numberOfOdds = model.NumberOfOdds;
+
+
+
+                //var numberOfOdds = model.NumberOfOdds;
                 int flag_for_odds = 0;
-                if (model.NumberOfOdds == -1)
+                //if (model.NumberOfOdds == -1)
+                //{
+                //    flag_for_odds = 0;
+                //}
+
+                if ((model.oddNumberForIgnore == true) || (model.oddNumberForZero == false && model.oddNumberForOne == false && model.oddNumberForTwo == false && model.oddNumberForThree == false && model.oddNumberForFour == false && model.oddNumberForFive == false && model.oddNumberForSix == false && model.oddNumberForSeven == false && model.oddNumberForIgnore == false))
                 {
                     flag_for_odds = 0;
-                }
+                } 
+
                 else { flag_for_odds = 1; }
 
                 var nb_less_15 = model.NumbersBelow15;
@@ -143,10 +163,10 @@ namespace TheLottoApp.Controllers
                 List<int> GeneratedNumberSetEachGame = new List<int>();
                 try
                 {
-                    var results = IPyInterface.CallFunction("get_set", lottery, userid, numberOfOdds, flag_for_odds
+                    var results = IPyInterface.CallFunction("get_set", lottery, userid, oddNumbers, flag_for_odds
                                      , nb_less_15, flag_for_15, nb_middle, flag_middle, nb_bigger_30, flag_for_30
                                      , ScoreVeryRange, flag_for_score_range, prev_rep_numb, flag_for_prev_num
-                                     , nb_to_inc, nb_to_excl, nb_of_games, filePathHistory,RemainingTicketsThisWeek, systemNumbers, userSubscription);
+                                     , nb_to_inc, nb_to_excl, nb_of_games, filePathHistory,RemainingTicketsThisWeek, model.system, userSubscription);
                     if (results is string)
                     {
                         return Json(new { GeneratedSet = results }, JsonRequestBehavior.AllowGet);

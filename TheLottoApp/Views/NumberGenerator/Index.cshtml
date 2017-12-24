@@ -11,9 +11,6 @@
 <!--Calculator Area-->
 <hr />
 
-
-
-
 <div class="container calculatorContainer">
     <div class="row">
         <div class="col-md-6 effect8">
@@ -40,41 +37,60 @@
                                         <option value="7">The Pools</option>
                                         <option value="8">Super 66</option>
                                         <option value="9">Cash 3</option>
-
                                     </select>
                                 </div>
                                 </div>
                             </div>
                             <hr />
-                        <div class="form-group">
+                        <div class="form-group form-odd-checkboxes" required>
                             <label class="col-md-5 control-label" for="age">Number of Odds</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control input-sm", @placeholder = "0" }) 
-                               <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput checkbox-primary" type="checkbox" value="doesnt matter" name="doenst matter"/>
+                                @*@Html.TextBoxFor(x => x.NumberOfOdds, new { @type = "number", @class = "form-control input-sm" })
+                               <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput checkbox-primary" type="checkbox" value="doesnt matter" name="doenst matter"/>*@
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForZero, new { @type = "checkbox", @class = "checkbox oddNumbers" })0</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForOne, new { @type = "checkbox", @class = "checkbox oddNumbers" })1</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForTwo, new { @type = "checkbox", @class = "checkbox oddNumbers" })2</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForThree, new { @type = "checkbox", @class = "checkbox oddNumbers" })3</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForFour, new { @type = "checkbox", @class = "checkbox oddNumbers" })4</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForFive, new { @type = "checkbox", @class = "checkbox oddNumbers" })5</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForSix, new { @type = "checkbox", @class = "checkbox oddNumbers" })6</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForSeven, new { @type = "checkbox", @class = "checkbox oddNumbers" })7</label>
+                                <label class="form-inline">@Html.CheckBoxFor(x => x.oddNumberForIgnore, new { @type = "checkbox", @class = "checkbox oddNumbersIgonore" })Doesn't matter</label>
                             </div>
                         </div>
+                        <p class="calculator-description col-md-12">
+                            How many odd numbers do you want to allow to be in the combination? You can choose multiple options. Keep in mind that it is restricted till seven as it considers the relevant ratio: for example, If you choose 7, calculator returns all odd numbers in the combination, no matter which system you use, as algorithm handles extrapolation of the distribution. Choose number of odds like if the system is seven.
+                            If you do not want to consider this filter, check the box “Doesn’t matter”
+                        </p>
+                        <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control input-sm", @placeholder = "0" })
+                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(m => m.NumbersBelow15, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers between 15 and 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control input-sm", @value = "-1", @placeholder = "0" })          
+                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })          
+                                @Html.ValidationMessageFor(m => m.NumbersBelow15And30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers above 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control input-sm", @value = "-1", @placeholder = "0" })
-                                
+                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })
+                                @Html.ValidationMessageFor(m => m.NumbersAbove30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
+                        <p class="calculator-description col-md-12">
+                            Choose how many numbers do you want to fit in the specific range: keep in mind, if you fill in all the fields, they should sum up to seven, no matter which system you use. Algorithm handles extrapolation of the distribution. If you do not want to consider this filter, check the box “Doesn’t matter”
+                        </p>
+                        <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="contribution">Score Range</label>
                             <div class="col-md-7">
@@ -89,14 +105,23 @@
                                  <input class="numberOfOddsRange" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
+                        <p class="calculator-description col-md-12">
+                            Each combination has the “score”: the average possibility of the balls coming together, based on the historical data. Statistics for score for previous draws is provided below, you can choose the range of the score you want your combination to fit in. If you do not want to consider this filter, check the box “Doesn’t matter”
+                        </p>
+                        <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="status">Number of previous repeat</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersOfPreviousRepeat, new { @type = "number", @class = "form-control input-sm", @value = "-1", @placeholder = "0" })
-                               
+                                @Html.TextBoxFor(x => x.NumbersOfPreviousRepeat, new { @type = "number", @class = "form-control input-sm", @value = "-1" })
+                                @Html.ValidationMessageFor(m => m.NumbersOfPreviousRepeat, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
                         </div>
+                        <p class="calculator-description col-md-12">
+                            Choose how many numbers from the previous game you want to be repeated. Calculator will randomly choose balls from the previous game to include, according to how many of them do you want in your tickets. If you don’t want any number to be repeated, put zero. If you do not want to consider this filter, check the box “Doesn’t matter”
+                            If you want to choose the specific number to be included from previous game, add it explicitly to the next field: “Numbers to Include”
+                        </p>
+                        <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to include</label>
                             <div class="col-md-7">
@@ -104,7 +129,10 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-
+                        <p class="calculator-description col-md-12">
+                            Put here numbers, that you want to appear in every generated combination.
+                        </p>
+                        <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to exclude</label>
                             <div class="col-md-7">
@@ -112,21 +140,41 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-
+                        <p class="calculator-description col-md-12">
+                            Put here numbers that you do not want to appear in any generated combination.
+                        </p>
+                        <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="downsize">Number of games</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control input-sm", @value = "10", min="1", @placeholder = "10" })
-                                
+                                @Html.TextBoxFor(x => x.NumberOfGames, new { @type = "number", @class = "form-control input-sm", @value = "10", min="1", @placeholder = "10" })                          
+                                @Html.ValidationMessageFor(m => m.NumberOfGames, "", new { @class = "text-danger" })
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-
+                        <p class="calculator-description col-md-12">
+                            How many tickets do you want to generate? Your current limit is [put here their current limit]
+                        </p>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="downsize">System (How many games per game? )</label>
+                            <div class="col-md-7">
+                                @*<input class="form-control input-sm" name="system" type="number" />*@
+                                @Html.TextBoxFor(x => x.system, new { @type = "number", @class = "form-control input-sm" })
+                                @Html.ValidationMessageFor(m => m.system, "", new { @class = "text-danger" })
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <p class="calculator-description col-md-12">
+                            How many balls per ticket to you want to generate?
+                        </p>
+                        <hr />
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-4">
                                 <input type="submit" value="Generate" class="btn pull-right btn-primary btn-lg" id="calculate">
                             </div>
                         </div>
+                       
                     }
                 </div>
             </div>
@@ -152,6 +200,13 @@
         if ($('.numberOfOddsInput').is(':checked')) {
             $('#txt').val('checked');
             $(this).parent().children('input').first().val("-1");
+            debugger;
+            if ($(this).prev('.field-validation-error')) {
+                var a = $(this).prev('.field-validation-error');
+                $(this).prev('.field-validation-error').toggle();
+                //$(this).prev('.field-validation-error').remove();
+               
+            }
         }
         else {
             $(this).parent().children('input').first().val("0");
@@ -193,6 +248,20 @@
        
     };
    
+
+    //for check boxes
+    $('.oddNumbersIgonore').click(function () {
+        if ($(this).is(':checked')) {
+            $('.oddNumbers').attr('checked', false);
+            $('.oddNumbers').attr('disabled', 'disabled');
+        }
+        else {
+            $('.oddNumbers').removeAttr('disabled');
+        }
+    })
+
+    
+
     </script>
 }
 

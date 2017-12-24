@@ -44,7 +44,7 @@ textarea {
 }
 #generated_number {
 	text-align: center;
-	background-color: #4acb5e;
+	background-color: #428bca;
 	border: 0px dotted #FCFC00;
 	margin: 0 10px 0 0;
 }
@@ -52,8 +52,8 @@ textarea {
 	
 	display: inline-block;
 	border-radius: 50%;
-	width: 50px;
-	line-height: 50px;
+	width: 36px;
+	line-height: 36px;
 	text-align: center;
 	font-size: 1.5em;
 	margin: 5px;
@@ -252,7 +252,7 @@ textarea {
 }
 
 #home-container {
-    margin-top:72px;
+    margin-top:56px;
     margin-bottom: -72px;
 }
 
@@ -497,3 +497,12 @@ text-align:left;
   border-color: #428bca; }
 .checkbox-primary input[type="checkbox"]:checked + label::after {
   color: #fff; }
+
+
+.form-odd-checkboxes label {
+    padding-right:10px !important;
+}
+
+.calculator-description {
+    font-size:10px;
+}

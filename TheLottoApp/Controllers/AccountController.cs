@@ -138,21 +138,44 @@ namespace TheLottoApp.Controllers
         }
 
         //
-        // GET: /Account/Register
+        //// GET: /Account/Register
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
+        //    db = new ApplicationDbContext();
+        //    var model = new RegisterViewModel()
+        //    {
+        //        SubscriptionOption = db.Roles.Select(x => new SelectListItem
+        //        {
+        //            Value = x.Name,
+        //            Text = x.Name
+        //        }).OrderBy(a => a.Value)
+        //    };
+        //    return View(model);
+        //}
+
         [AllowAnonymous]
         public ActionResult Register()
         {
-            db = new ApplicationDbContext();
-            var model = new RegisterViewModel()
-            {
-                SubscriptionOption = db.Roles.Select(x => new SelectListItem
-                {
-                    Value = x.Name,
-                    Text = x.Name
-                }).OrderBy(a => a.Value)
-            };
-            return View(model);
+            return View();
         }
+
+        [AllowAnonymous]
+        public ActionResult Subscription()
+        {
+            using (var db = new TheLottoAppDbEntity()) {
+                var results = from x in db.AspNetRoles
+                              select new SubscriptionViewModel
+                              {
+                                  allowedTickets = x.Allowed_Tickets ?? 0,
+                                  plan = x.Name,
+                                  price = x.Subscription_Price ?? 0
+                              };
+                return View(results.ToList());
+            }
+                
+        }
+
 
         //
         // POST: /Account/Register

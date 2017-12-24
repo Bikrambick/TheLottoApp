@@ -9,29 +9,7 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-    <div class="top-navigation hidden-sm hidden-xs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    @Html.ActionLink("Lotto", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input type="text" placeholder="Username" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control" />
-                        </div>
-                        <button tpye="submit" class="btn btn-sm btn-primary">Login</button>
-                        <a class="btn btn-sm btn-success" href="/Account/Login">SignUp</a>
-                    </form>
-                </div>
-                <div class="col-md-3">
-                    <div id="google_translate_element" class="pull-right"></div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+   @Html.Partial("_NavigationPartial");    
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,7 +18,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

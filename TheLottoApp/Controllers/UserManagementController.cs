@@ -109,24 +109,29 @@ namespace TheLottoApp.Controllers
             
             using (var db = new TheLottoAppDbEntity())
             {
-
-                var userId = db.AspNetUsers.Where(x => x.Email == email).Select(x => x.Id).FirstOrDefault();
-                var existingRecord = db.tblUserGeneratedTickets.Where(x => x.User_Id == userId.ToString()).SingleOrDefault() ;
-                if(existingRecord != null)
+                try
                 {
-                    DateTime lastGeneratedDate = Convert.ToDateTime(existingRecord.Ticket_Generated_Date);
-                    var DaysSinceLastGenerated = DateTime.Now.Subtract(lastGeneratedDate).TotalDays;
-                    if (DaysSinceLastGenerated > 6)
+                    var userId = db.AspNetUsers.Where(x => x.Email == email).Select(x => x.Id).FirstOrDefault();
+                    var existingRecord = db.tblUserGeneratedTickets.Where(x => x.User_Id == userId.ToString()).SingleOrDefault();
+                    if (existingRecord != null)
                     {
-                        existingRecord.Ticket_Generated_Date = DateTime.Now;
-                        existingRecord.Total_Tickets_Generated = 0;
-                        try
+                        DateTime lastGeneratedDate = Convert.ToDateTime(existingRecord.Ticket_Generated_Date);
+                        var DaysSinceLastGenerated = DateTime.Now.Subtract(lastGeneratedDate).TotalDays;
+                        if (DaysSinceLastGenerated > 6)
                         {
-                            db.SaveChanges();
+                            existingRecord.Ticket_Generated_Date = DateTime.Now;
+                            existingRecord.Total_Tickets_Generated = 0;
+                            try
+                            {
+                                db.SaveChanges();
+                            }
+                            catch (Exception ex) { }
                         }
-                        catch (Exception ex) { }
                     }
                 }
+                catch(Exception ex) { }
+                
+               
                
             }
         }
