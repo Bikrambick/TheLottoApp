@@ -100,6 +100,7 @@ namespace TheLottoApp.Controllers
         {
             using (var db = new TheLottoAppDbEntity())
             {
+
                 return  db.AspNetRoles.Where(x=>x.Name == Subscription).ToList();
                 
             }

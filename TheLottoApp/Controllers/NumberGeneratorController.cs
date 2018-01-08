@@ -119,8 +119,12 @@ namespace TheLottoApp.Controllers
                 catch(Exception ex) { }
 
             }
+            else
+            {
+                return Json(new { GeneratedSet = "Please <a href = '../Account/Login'>Login</a> to Generate Number." }, JsonRequestBehavior.AllowGet);
+            }
 
-                return Json(new { GeneratedSet = "Server Error!!!" }, JsonRequestBehavior.AllowGet);
+            return Json(new { GeneratedSet = "Server Error!!!" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
