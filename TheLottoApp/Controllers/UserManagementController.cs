@@ -104,6 +104,7 @@ namespace TheLottoApp.Controllers
                 
             }
         }
+
         public void CheckSetWeeklyTicketAllownces(string email)
         {
             
@@ -135,5 +136,6 @@ namespace TheLottoApp.Controllers
                
             }
         }
+
     }
 }

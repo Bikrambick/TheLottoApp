@@ -29,6 +29,7 @@ namespace TheLottoApp.Models
 
         public int LottoId { get; set; }
 
+
         public int system { get; set; }
 
         public bool oddNumberForZero { get; set; }
@@ -40,5 +41,10 @@ namespace TheLottoApp.Models
         public bool oddNumberForSix { get; set; }
         public bool oddNumberForSeven { get; set; }
         public bool oddNumberForIgnore { get; set; }
+
+        
+
+
+
     }
 }

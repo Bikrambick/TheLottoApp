@@ -30,6 +30,7 @@ namespace TheLottoApp.Controllers
                 DataAccess.ChartFromStat IChartFromStat = new DataAccess.ChartFromStat(pathToLib, pathToPyFile, "ozlotto", filePathHistory);
                 try
                 {
+                    //IChartFromStat = new DataAccess.ChartFromStat(pathToLib, pathToPyFile, "ozlotto", filePathHistory);
                     var numbersStat = IChartFromStat.CallFunction("get_numbers_statistict");
                     if (numbersStat is string)
                     {
@@ -40,6 +41,7 @@ namespace TheLottoApp.Controllers
                     chartDataBallOccurance = LoadchartDataBallOccurance(numbersStat);
                     ChartDataCollection.Add(chartDataBallOccurance);
 
+                    
                     var prevRepeat = IChartFromStat.CallFunction("get_prev_repeated");
                     if (prevRepeat is string)
                     {
@@ -51,6 +53,7 @@ namespace TheLottoApp.Controllers
                     ChartDataCollection.Add(chartDataPreviousRepeat);
 
 
+                    
                     var prevOdd = IChartFromStat.CallFunction("get_nb_of_odds");
                     if (prevOdd is string)
                     {

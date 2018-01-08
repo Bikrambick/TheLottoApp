@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Show Selection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Show Selection</h2>
+
+<div class="row">
+    <div class="col-md-6" id="ChartGeneratorSelector">
+        <div id="basic">
+            <a href="/NumberGenerator/basic">Basic</a>
+        </div>
+    </div>
+  
+    <div class="col-md-6" id="ChartGeneratorSelector">
+        <div id="advanced">
+            <a href="/NumberGenerator/index">Advanced</a>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    #basic,#advanced{
+        border:1px solid #ccc;
+        height: 300px;
+        width:280px;
+        top:50px;
+        left:150px;
+        position: relative;
+    }
+    #basic{
+        background-color:tomato;
+    }
+    #advanced{
+        background-color:burlywood;
+    }
+    #ChartGeneratorSelector{
+        text-align:center;
+        border:1px solid #ccc;
+        height:600px;
+
+    }
+</style>
+
