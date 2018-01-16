@@ -1,0 +1,73 @@
+﻿#card-container{
+    margin-top:80px;
+    margin-left:300px;
+}
+#card-main{
+    height:300px;
+    width:600px;
+    background-color:#e32e35;
+    display:inline-block;
+   
+    border-top-left-radius:20px;
+    border-bottom-left-radius:20px;
+}
+#card-sub{
+    height:300px;
+    width:200px;
+    background-color:gray;
+    display:inline-block;
+    border-top-right-radius:20px;
+    border-bottom-right-radius:20px;
+}
+#homeCardBannerContainer{
+    margin-left:300px;
+    text-align:center;
+}
+#lotto1,#lotto2,#lotto3,#lotto4,#lotto5,#lotto6{
+    width:100%;
+    height:auto;
+    background-color:#FECC45;
+    display:inline-block;
+    height:188px;
+    width:148px;
+    border-radius:10px;
+    margin-left:10px;
+}
+
+.btn-cta{
+    background-color:#FF6F23;
+    width:100px;
+    border-radius:5px;
+    display:inline-block;
+    margin:135px 0px 0px -5px;
+    color:#fff;
+    padding-left:12px;
+    padding-right:12px;
+    
+}
+.btn-cta:hover{
+    text-decoration:none;
+    background-color:ActiveBorder;
+}
+.btn-text{
+    /*font-size:18px;*/
+    line-height:30px;
+    cursor:pointer;
+}
+#content-area-wrapper{
+    margin-top:80px;
+    text-align:center;
+    height: 400px;
+    width:80%;
+    background-color:#fff;
+    border:1px solid ActiveBorder;
+    margin-left:200px;
+}
+#content1,#content2,#content3{
+    text-align: center;
+    top:25%;
+    height:200px;
+    line-height:200px;
+    background-color:darkgray;
+    
+}

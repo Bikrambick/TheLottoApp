@@ -27,5 +27,29 @@ namespace TheLottoApp.Controllers
 
             return View();
         }
+        public ActionResult HomeBanner()
+        {
+            return View();
+        }
+        public ActionResult AboutHomeCard ()
+        {
+            return View();
+        }
+        public ActionResult HomeCard()
+        {
+            return View();
+        }
+        public ActionResult HomeCardAlter()
+        {
+            return View();
+        }
+        public ActionResult RHSComponent()
+        {
+            return View();
+        }
+        public ActionResult SecurityHomeCard()
+        {
+            return View();
+        }
     }
 }
