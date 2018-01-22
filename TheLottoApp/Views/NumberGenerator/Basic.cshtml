@@ -6,36 +6,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Basic</h2>
+<div id="secondaryContainer">
+    <h2>Basic</h2>
+</div>
 @using (Ajax.BeginForm("GenerateBasic", "NumberGenerator", new AjaxOptions() { OnSuccess = "getresult", HttpMethod = "post" }, new { enctype = "multipart/form-data", @class = "form form-horizontal", data_toggle = "validator" }))
-{
-    
+{   
         <div class="container">
             <div class="row">
                     <div class="form-group">
                         <div class="col-md-3">
-                            <label class="btn btn-primary">
                                 <img src="~/Content/Media/str_Balanced.gif" alt="Balanced" class="img-thumbnail img-check">
                                 @Html.CheckBoxFor(x=>x.balanced, new { @id = "Balanced", @class = "hidden", @autocomplete = "off" })
-                              </label>
+                                <i class="selection-tick">&#10003;</i>
                         </div>
                         <div class="col-md-3">
-                            <label class="btn btn-primary">
                                 <img src="~/Content/Media/str_best_score.gif" alt="BestScore" class="img-thumbnail img-check">
                                 @Html.CheckBoxFor(x => x.bestScore, new { @id = "BestScore", @class = "hidden", @autocomplete = "off" })
-                            </label>
+                            <i class="selection-tick">&#10003;</i>
+
                         </div>
                         <div class="col-md-3">
-                            <label class="btn btn-primary">
                                 <img src="~/Content/Media/str_hot_numbers.gif" alt="HotNumbers" class="img-thumbnail img-check">
                                 @Html.CheckBoxFor(x => x.hotNumbers, new { @id = "HotNumbers", @class = "hidden", @autocomplete = "off" })
-                            </label>
+                            <i class="selection-tick">&#10003;</i>
                         </div>
                         <div class="col-md-3">
-                            <label class="btn btn-primary">
                                 <img src="~/Content/Media/str_zero_repeats.gif" alt="ZeroRepeats" class="img-thumbnail img-check">
                                 @Html.CheckBoxFor(x => x.zeroRepeats, new { @id = "ZeroRepeats", @class = "hidden", @autocomplete = "off" })
-                            </label>
+                            <i class="selection-tick">&#10003;</i>
                         </div>
                     </div> 
                 <hr />
@@ -62,20 +60,22 @@
 }
 <div class="row">
     <div id="GeneratedSetWrapper">
-
     </div>
-
 </div>
 <style type="text/css">
     .check
         {
-            opacity:0.5;
-	        color:#996;
+            opacity:0.6;
+	        background-color:#1f35a5;
 	
          }
     #GeneratedSetWrapper{
         margin:0 auto;
         width:700px;
+    }
+
+    .img-thumbnail {
+        cursor:pointer;
     }
 </style>
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -87,10 +87,10 @@
     $(document).ready(function (e) {
         $(".img-check").click(function () {
             $(this).toggleClass("check");
+            $(this).parent().children('.selection-tick').toggle();
         });
     });
     $('.hidden').on('change', function () {
-
         $('.hidden').not(this).prop('checked', false);
 
     });

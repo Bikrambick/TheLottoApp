@@ -4,20 +4,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Show Selection</h2>
+<div id="secondaryContainer">
+    <h2>Show Selection</h2>
+</div>
 
-<div class="row">
-    <div class="col-md-6" id="ChartGeneratorSelector">
-        <div id="basic">
-            <a href="/NumberGenerator/basic">Basic</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" id="ChartGeneratorSelector">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Basic Selection</h4>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <a href="/NumberGenerator/basic" class="btn btn-lg btn-primary">Basic</a>
+                </div>
+            </div>
         </div>
-    </div>
-  
-    <div class="col-md-6" id="ChartGeneratorSelector">
-        <div id="advanced">
-            <a href="/NumberGenerator/index">Advanced</a>
+
+        <div class="col-md-6" id="ChartGeneratorSelector">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Advanced Selection</h4>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <a href="/NumberGenerator/index" class="btn btn-lg btn-primary">Advanced</a>
+                </div>
+            </div>
         </div>
-    </div>
 </div>
 <style type="text/css">
     #basic,#advanced{
@@ -37,7 +48,7 @@
     #ChartGeneratorSelector{
         text-align:center;
         border:1px solid #ccc;
-        height:600px;
+        padding-bottom:40px;
 
     }
 </style>
