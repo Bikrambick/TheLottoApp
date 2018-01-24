@@ -69,6 +69,9 @@
                                 @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control input-sm" })
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
+                                @Html.ActionLink("show modal", "DrawGeneralChart","ChartGenerator", null, new { @class = "modal-link btn btn-success" })
+                                
+                                
                             </div>
                         </div>
                         <div class="form-group">
@@ -188,6 +191,12 @@
             </div>
         </div>
         <div class="col-md-5 col-md-offset-1">
+            <div id="modal-container" class="modal fade"
+                 tabindex="-1" role="dialog">
+                <div class="modal-content">
+                   
+                </div>
+            </div>
             <div id="GeneratedSetWrapper">
 
             </div>
@@ -198,11 +207,14 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/bootstrap-slider.min.js")
     @Scripts.Render("~/bundles/jqueryunob")
+<script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     $('#slider-input').slider({});
-      
+
     $(".numberOfOddsInput").click(function () {
         $(this).parent().children('input').val(-1);
         if ($('.numberOfOddsInput').is(':checked')) {
@@ -213,20 +225,20 @@
                 var a = $(this).prev('.field-validation-error');
                 $(this).prev('.field-validation-error').toggle();
                 //$(this).prev('.field-validation-error').remove();
-               
+
             }
         }
         else {
             $(this).parent().children('input').first().val("0");
         }
         $(this).parent().children('input').first().toggle("disabled");
-        
+
     })
     $(".numberOfOddsRange").click(function () {
         $(this).val(-1);
         $('#slider-input').toggle('disabled');
             $(this).parent().children().not(this).toggle("disabled");
-        
+
     })
 
     function getresult(data) {
@@ -236,7 +248,7 @@
         }
         if (typeof data.GeneratedSet != 'string') {
             if (data != null || data != "Server Error!!!") {
-                
+
                 for (i = 0; i < data.GeneratedSet.length; i++) {
                     var wrapper = document.createElement('div');
                     wrapper.setAttribute('id', 'generated_number');
@@ -253,9 +265,9 @@
             $('#GeneratedSetWrapper').append("<div class='alert alert-danger'>"+data.GeneratedSet+"</div>");
         };
         $("html, body").animate({ scrollTop: 0 }, 200);
-       
+
     };
-   
+
 
     //for check boxes
     $('.oddNumbersIgonore').click(function () {
@@ -267,6 +279,32 @@
             $('.oddNumbers').removeAttr('disabled');
         }
     })
+
+    //load charts on modal
+        $(function () {
+            // Initialize numeric spinner input boxes
+            //$(".numeric-spinner").spinedit();
+            // Initialize modal dialog
+            // attach modal-container bootstrap attributes to links with .modal-link class.
+            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+            //clear modal cache, so that new content can be loaded
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+
 
     
 
