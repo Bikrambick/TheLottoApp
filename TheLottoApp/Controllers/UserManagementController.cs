@@ -99,12 +99,16 @@ namespace TheLottoApp.Controllers
         public List<AspNetRole> GetUserSystem(string Subscription)
         {
             using (var db = new TheLottoAppDbEntity())
-            {
+                try
+                {
 
-                return  db.AspNetRoles.Where(x=>x.Name == Subscription).ToList();
-                
-            }
+                    return db.AspNetRoles.Where(x => x.Name == Subscription).ToList();
+
+                }
+                catch (Exception ex) { }
+            return null;
         }
+        
 
         public void CheckSetWeeklyTicketAllownces(string email)
         {

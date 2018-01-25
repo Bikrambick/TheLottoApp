@@ -7,7 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 20px;
+   margin-top: 20px; 
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -228,9 +228,9 @@ textarea {
     max-width: 74px;
     }
 
-.navbar-fixed-top {
+/*.navbar-fixed-top {
     top:52px;
-}
+}*/
 
 .goog-te-gadget-simple {
     border-radius:4px;
@@ -252,12 +252,13 @@ textarea {
 }
 
 #home-container {
-    margin-top:56px;
+    margin-top:72px;
     margin-bottom: -72px;
 }
 
 .navbar-brand {
     padding: 8px 15px;
+    margin-top:6px;
 }
 
 .goog-te-banner-frame {
@@ -475,13 +476,10 @@ textarea {
 		}
 
 
-.body-content > .container:first-child {
+/*.body-content > .container:first-child {
     margin-top:100px;
-}
+}*/
 
-.calculatorContainer {
-    padding-top:50px;
-}
 
 .calculatorContainer .panel-heading {
     text-align:center;
@@ -509,7 +507,7 @@ text-align:left;
 
 #secondaryContainer {
     text-align: center;
-    margin-top: 60px;
+    margin-bottom:20px;
 }
 
 .selection-tick {

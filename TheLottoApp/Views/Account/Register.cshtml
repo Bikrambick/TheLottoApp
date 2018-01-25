@@ -1,114 +1,9 @@
 ﻿@model TheLottoApp.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    var test = ViewBag.subscription;
 }
 
-<div class="container">
-    <div class="row">
-        @*@for(var i = 0; i < Model.SubscriptionOption.; i++){
-
-        }*@
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-
-            <!-- PRICE ITEM -->
-            <div class="panel price panel-red">
-                <div class="panel-heading  text-center">
-                    <h3>BASIC PLAN</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p class="lead" style="font-size:40px"><strong>$10 / month</strong></p>
-                </div>
-                <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i> Personal use</li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i> 27/7 support</li>
-                </ul>
-                <div class="panel-footer">
-                    <a class="btn btn-lg btn-block btn-danger" href="#">SUBSCRIBE</a>
-                </div>
-            </div>
-            <!-- /PRICE ITEM -->
-
-
-        </div>
-
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-
-            <!-- PRICE ITEM -->
-            <div class="panel price panel-blue">
-                <div class="panel-heading arrow_box text-center">
-                    <h3>SILVER PLAN</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p class="lead" style="font-size:40px"><strong>$20 / month</strong></p>
-                </div>
-                <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text-info"></i> Personal use</li>
-                    <li class="list-group-item"><i class="icon-ok text-info"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="icon-ok text-info"></i> 27/7 support</li>
-                </ul>
-                <div class="panel-footer">
-                    <a class="btn btn-lg btn-block btn-info" href="#">SUBSCRIBE</a>
-                </div>
-            </div>
-            <!-- /PRICE ITEM -->
-
-
-        </div>
-
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-
-            <!-- PRICE ITEM -->
-            <div class="panel price panel-green">
-                <div class="panel-heading arrow_box text-center">
-                    <h3>GOLD PLAN</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p class="lead" style="font-size:40px"><strong>$0 / month</strong></p>
-                </div>
-                <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text-success"></i> Personal use</li>
-                    <li class="list-group-item"><i class="icon-ok text-success"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="icon-ok text-success"></i> 27/7 support</li>
-                </ul>
-                <div class="panel-footer">
-                    <a class="btn btn-lg btn-block btn-success" href="#">SUBSCRIBE</a>
-                </div>
-            </div>
-            <!-- /PRICE ITEM -->
-
-
-        </div>
-
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-
-            <!-- PRICE ITEM -->
-            <div class="panel price panel-grey">
-                <div class="panel-heading arrow_box text-center">
-                    <h3>FREE PLAN</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p class="lead" style="font-size:40px"><strong>$0 / month</strong></p>
-                </div>
-                <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text-success"></i> Personal use</li>
-                    <li class="list-group-item"><i class="icon-ok text-success"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="icon-ok text-success"></i> 27/7 support</li>
-                </ul>
-                <div class="panel-footer">
-                    <a class="btn btn-lg btn-block btn-primary" href="#">SUBSCRIBE</a>
-                </div>
-            </div>
-            <!-- /PRICE ITEM -->
-
-
-        </div>
-
-
-
-    </div>
-
-</div>
 
 <div class="container">
     <div class="card card-container">
@@ -117,15 +12,17 @@
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin", role = "form" }))
         {
             @Html.AntiForgeryToken()
-            <h4 style="text-align:center;">Create a new account.</h4>
+            <h4 style="text-align:center;">Create an account</h4>
             <hr />
             @Html.ValidationSummary("", new { @class = "text-danger" })
+            @*@Html.HiddenFor(m => m.SelectedSubscription, new { @class = "form-control", id = "subscription", value= @test})*@
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "input-email", placeholder = "Email address" })
             @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })   
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
 
-            @Html.DropDownListFor(m => m.SelectedSubscription, Model.SubscriptionOption, "Select Level", new { @class = "form-control" })<br />
-
+            //@Html.DropDownListFor(m => m.SelectedSubscription, Model.SubscriptionOption, "Select Level", new { @class = "form-control" })<br />
+            // @Model.SelectedSubscription= ViewBag.subscription;
+            <input type="hidden" name="subscription" value="@ViewBag.subscription" />
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
         }
     </div><!-- /card-container -->

@@ -8,8 +8,17 @@
 <link href="~/css/bootstrap-slider.min.css" rel="stylesheet" />
 
 
+<nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+        <li class="breadcrumb-item"><a href="/NumberGenerator/ShowSelection">Select Calculator</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Advanced Calculator</li>
+    </ol>
+</nav>
 <!--Calculator Area-->
-<hr />
+<div id="secondaryContainer">
+    <h2>Advanced Calculator</h2>
+</div>
 
 <div class="container calculatorContainer">
     <div class="row">
@@ -66,7 +75,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control input-sm" })
+                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @min="-1", @class = "form-control input-sm" })
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
@@ -74,7 +83,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers between 15 and 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })          
+                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @min="-1", @class = "form-control input-sm", @value = "-1" })          
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15And30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
@@ -82,7 +91,7 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers above 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })
+                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @min="-1", @class = "form-control input-sm", @value = "-1" })
                                 @Html.ValidationMessageFor(m => m.NumbersAbove30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
                             </div>
