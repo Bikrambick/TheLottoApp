@@ -14,6 +14,21 @@ namespace TheLottoApp.Controllers
         {
             return View();
         }
+
+        public ActionResult DrawGeneralChart()
+        {
+            return PartialView();
+        }
+        public ActionResult DrawPreviousRepeatChart()
+        {
+            return PartialView();
+        }
+        public ActionResult DrawPreviousOddChart()
+        {
+            return PartialView();
+        }
+
+
         [HttpPost]
         public JsonResult GenerateChart()
         {

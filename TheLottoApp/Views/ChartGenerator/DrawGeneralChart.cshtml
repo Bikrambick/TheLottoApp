@@ -1,0 +1,54 @@
+﻿<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+          $.ajax({
+                type: "POST",
+                url: "/ChartGenerator/GenerateChart",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    console.log(r);
+                    var data = google.visualization.arrayToDataTable(r[0]);
+                    //numbers repeat
+                    var barchart_options = {
+                        title: 'Freequency of Occurance ',
+                        width: 500,
+                        height:600,
+                        legend: 'none'};
+                    var barchart = new google.visualization.BarChart(document.getElementById('chart_div'));
+                    barchart.draw(data, barchart_options);
+
+                },
+                failure: function (r) {
+                    alert(r.d);
+                },
+                error: function (r) {
+                    alert(r.d);
+                }
+            });
+      }
+      $(function () {
+          $('#ok-btn').click(function () {
+              $('#modal-container').modal('hide');
+          });
+      });
+</script>
+
+<div class="row">
+    <div class="col-md-4 col-sm-6"><div id="chart_div"></div></div>
+    <button id="ok-btn" value="OK" class="btn btn-primary" style="position:relative;">OK</button>
+</div>
