@@ -7,7 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-   margin-top: 20px; 
+    margin-top: 20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -228,9 +228,9 @@ textarea {
     max-width: 74px;
     }
 
-/*.navbar-fixed-top {
+.navbar-fixed-top {
     top:52px;
-}*/
+}
 
 .goog-te-gadget-simple {
     border-radius:4px;
@@ -252,13 +252,12 @@ textarea {
 }
 
 #home-container {
-    margin-top:72px;
+    margin-top:56px;
     margin-bottom: -72px;
 }
 
 .navbar-brand {
     padding: 8px 15px;
-    margin-top:6px;
 }
 
 .goog-te-banner-frame {
@@ -476,10 +475,13 @@ textarea {
 		}
 
 
-/*.body-content > .container:first-child {
+.body-content > .container:first-child {
     margin-top:100px;
-}*/
+}
 
+.calculatorContainer {
+    padding-top:50px;
+}
 
 .calculatorContainer .panel-heading {
     text-align:center;
@@ -507,7 +509,7 @@ text-align:left;
 
 #secondaryContainer {
     text-align: center;
-    margin-bottom:20px;
+    margin-top: 60px;
 }
 
 .selection-tick {
@@ -515,12 +517,26 @@ text-align:left;
     color: #5cb85c;
     display:none;
 }
-
-#modal-container {
-    display: block;
-    width: 400px;
+#modalTogller,#BtnPreviousRepeat,#BtnPreviousOdd{
+    margin-top: 5px;
+    color: #fff;
+    background: #428bca;
+    width: 16px;
+    text-align: center;
+   
+}
+#modalTogller,#BtnPreviousRepeat,#BtnPreviousOdd:hover{
+    cursor:pointer;
+}
+#myModal,#PreviousRepeat,#PreviousOdd{
+    width: 560px;
+    height: 470px;
+    margin-top: 70px;
+    margin-left: 430px;
     overflow: hidden;
-    height: auto;
-    margin-left: 800px;
-    margin-top: 100px;
+    border: 1px solid #000;
+    background:#fff;
+}
+.modal-body{
+    height:330px;
 }

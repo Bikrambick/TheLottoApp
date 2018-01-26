@@ -6,19 +6,13 @@
 @*<script src="~/Scripts/Custom/RangeSlider.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />*@
 <link href="~/css/bootstrap-slider.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
-
-<nav aria-label="breadcrumb" role="navigation">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-        <li class="breadcrumb-item"><a href="/NumberGenerator/ShowSelection">Select Calculator</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Advanced Calculator</li>
-    </ol>
-</nav>
 <!--Calculator Area-->
-<div id="secondaryContainer">
-    <h2>Advanced Calculator</h2>
-</div>
+<hr />
 
 <div class="container calculatorContainer">
     <div class="row">
@@ -75,10 +69,17 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @min="-1", @class = "form-control input-sm" })
+                                @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control input-sm" })
+                                
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15, "", new { @class = "text-danger" })
+
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
-                                @Html.ActionLink("show modal", "DrawGeneralChart","ChartGenerator", null, new { @class = "modal-link btn btn-success" })
+                                
+                                
+                                
+                                <!-- Button trigger modal -->
+                                
+                                    <i class="fa fa-info-circle pull-right btn-primary" id="modalTogller" data-toggle="modal" data-target="#GeneralChartModal"></i>
                                 
                                 
                             </div>
@@ -86,17 +87,19 @@
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers between 15 and 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @min="-1", @class = "form-control input-sm", @value = "-1" })          
+                                @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })          
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15And30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
+                                <i class="fa fa-info-circle pull-right btn-primary" id="BtnPreviousRepeat" data-toggle="modal" data-target="#PreviousRepeat"></i>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="retire">Numbers above 30</label>
                             <div class="col-md-7">
-                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @min="-1", @class = "form-control input-sm", @value = "-1" })
+                                @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })
                                 @Html.ValidationMessageFor(m => m.NumbersAbove30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
+                                <i class="fa fa-info-circle pull-right btn-primary" id="BtnPreviousOdd" data-toggle="modal" data-target="#PreviousOdd"></i>
                             </div>
                         </div>
                         <p class="calculator-description col-md-12">
@@ -200,12 +203,7 @@
             </div>
         </div>
         <div class="col-md-5 col-md-offset-1">
-            <div id="modal-container" class="modal fade"
-                 tabindex="-1" role="dialog">
-                <div class="modal-content">
-                   
-                </div>
-            </div>
+            
             <div id="GeneratedSetWrapper">
 
             </div>
@@ -214,13 +212,28 @@
             </div>
         </div>
 
+
+<!-- Modal -> General -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="GeneralChartModalLabel" aria-hidden="true">
+  
+</div>
+<!-- Modal -> Previous Repeat -->
+<div class="modal fade" id="PreviousRepeat" tabindex="-1" role="dialog" aria-labelledby="PreviousRepeatModalLabel" aria-hidden="true">
+
+</div>
+<!-- Modal -> Previous Odd -->
+<div class="modal fade" id="PreviousOdd" tabindex="-1" role="dialog" aria-labelledby="PreviousOddModalLabel" aria-hidden="true">
+
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/Scripts/bootstrap-slider.min.js")
+   
     @Scripts.Render("~/bundles/jqueryunob")
-<script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script>
     $('#slider-input').slider({});
 
@@ -290,31 +303,35 @@
     })
 
     //load charts on modal
-        $(function () {
-            // Initialize numeric spinner input boxes
-            //$(".numeric-spinner").spinedit();
-            // Initialize modal dialog
-            // attach modal-container bootstrap attributes to links with .modal-link class.
-            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
-            $('body').on('click', '.modal-link', function (e) {
-                e.preventDefault();
-                $(this).attr('data-target', '#modal-container');
-                $(this).attr('data-toggle', 'modal');
-            });
-            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
-            $('body').on('click', '.modal-close-btn', function () {
-                $('#modal-container').modal('hide');
-            });
-            //clear modal cache, so that new content can be loaded
-            $('#modal-container').on('hidden.bs.modal', function () {
-                $(this).removeData('bs.modal');
-            });
-            $('#CancelModal').on('click', function () {
-                return false;
-            });
-        });
+      
+      //general      
+    $("#modalTogller").click(function () {
+        $('#myModal').modal({
+            keyboard: false,
+            remote: '/ChartGenerator/DrawGeneralChart'
+        }).show();
+        
+    });
 
+    //previous repoeat
+    $("#BtnPreviousRepeat").click(function () {
+        $('#PreviousRepeat').modal({
+            keyboard: false,
+            remote: '/ChartGenerator/DrawPreviousRepeatChart'
+        }).show();
 
+    });
+
+    //Previous odd
+    $("#BtnPreviousOdd").click(function () {
+        $('#PreviousOdd').modal({
+            keyboard: false,
+            remote: '/ChartGenerator/DrawPreviousOddChart'
+        }).show();
+
+    });
+
+   
     
 
     </script>

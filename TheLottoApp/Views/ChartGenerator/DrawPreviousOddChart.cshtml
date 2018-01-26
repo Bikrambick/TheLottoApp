@@ -1,4 +1,5 @@
-﻿<!--Load the AJAX API-->
+﻿
+<!--Load the AJAX API-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @Scripts.Render("~/bundles/jquery")
 <script type="text/javascript">
@@ -23,14 +24,19 @@
                 success: function (r) {
                     console.log(r);
                     var data = google.visualization.arrayToDataTable(r[0]);
-                    //numbers repeat
-                    var barchart_options = {
-                        title: 'Freequency of Occurance ',
+                    var prevrepeat = google.visualization.arrayToDataTable(r[1]);
+                    var prevOdd = google.visualization.arrayToDataTable(r[2]);
+
+                    //previous repeat
+                    //previous odd
+                    var previousOdd_options = {
+                        title: 'Distribution of odd numbers',
                         width: 600,
-                        height:350,
-                        legend: 'none'};
-                    var barchart = new google.visualization.BarChart(document.getElementById('chart_div'));
-                    barchart.draw(data, barchart_options);
+                        height: 350,
+                        legend: 'none'
+                    };
+                    var barchart = new google.visualization.BarChart(document.getElementById('chart_div_prev_odd'));
+                    barchart.draw(prevOdd, previousOdd_options);
 
                 },
                 failure: function (r) {
@@ -42,6 +48,7 @@
             });
       }
       
+
 </script>
 
 <div class="row">
@@ -52,14 +59,15 @@
         </div> <!-- /modal-header -->
         <div class="modal-body">
 
-            <div class="col-md-4 col-sm-6"><div id="chart_div"></div></div>
+            <div class="col-md-4 col-sm-6"><div id="chart_div_prev_odd"></div></div>
 
         </div> <!-- /modal-body -->
         <div class="modal-footer">
             <button type="button" class="btn btn-default" id="btnCloseModal" data-dismiss="modal" onclick="javascript:window.location.reload()" >Close</button>
-           
+
         </div>
     </div>
-     
-    
+
+
 </div>
+

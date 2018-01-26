@@ -281,6 +281,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom\HomeCard.css" />
     <Content Include="Content\Custom\RangeSlider.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Media\everyday_lotto.png" />
     <Content Include="Content\Media\monday_lotto.png" />
     <Content Include="Content\Media\oz_lotto.png" />
@@ -346,6 +348,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\RangeSlider.js" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -427,6 +435,9 @@
     <Content Include="Views\Home\HomeCard.cshtml" />
     <Content Include="Views\Account\Subscription.cshtml" />
     <Content Include="Views\ChartGenerator\DrawGeneralChart.cshtml" />
+    <Content Include="Views\Shared\_NavigationPartial.cshtml" />
+    <Content Include="Views\ChartGenerator\DrawPreviousRepeatChart.cshtml" />
+    <Content Include="Views\ChartGenerator\DrawPreviousOddChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
