@@ -517,7 +517,8 @@ text-align:left;
     color: #5cb85c;
     display:none;
 }
-#modalTogller{
+
+#modalTogller,#BtnPreviousRepeat,#BtnPreviousOdd{
     margin-top: 5px;
     color: #fff;
     background: #428bca;
@@ -525,10 +526,10 @@ text-align:left;
     text-align: center;
    
 }
-#modalTogller:hover{
+#modalTogller,#BtnPreviousRepeat,#BtnPreviousOdd:hover{
     cursor:pointer;
 }
-#myModal{
+#myModal,#PreviousRepeat,#PreviousOdd{
     width: 560px;
     height: 470px;
     margin-top: 70px;

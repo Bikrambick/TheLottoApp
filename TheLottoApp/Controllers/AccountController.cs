@@ -154,8 +154,9 @@ namespace TheLottoApp.Controllers
         //}
 
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(String subscription)
         {
+            ViewBag.subscription = subscription;
             return View();
         }
 

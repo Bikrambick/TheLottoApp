@@ -90,6 +90,7 @@
                                 @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })          
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15And30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
+                                <i class="fa fa-info-circle pull-right btn-primary" id="BtnPreviousRepeat" data-toggle="modal" data-target="#PreviousRepeat"></i>
                             </div>
                         </div>
                         <div class="form-group">
@@ -98,6 +99,7 @@
                                 @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })
                                 @Html.ValidationMessageFor(m => m.NumbersAbove30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
+                                <i class="fa fa-info-circle pull-right btn-primary" id="BtnPreviousOdd" data-toggle="modal" data-target="#PreviousOdd"></i>
                             </div>
                         </div>
                         <p class="calculator-description col-md-12">
@@ -211,10 +213,25 @@
         </div>
 
 
+<<<<<<< HEAD
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="GeneralChartModalLabel" aria-hidden="true">
   
 </div>
+=======
+<!-- Modal -> General -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="GeneralChartModalLabel" aria-hidden="true">
+  
+</div>
+<!-- Modal -> Previous Repeat -->
+<div class="modal fade" id="PreviousRepeat" tabindex="-1" role="dialog" aria-labelledby="PreviousRepeatModalLabel" aria-hidden="true">
+
+</div>
+<!-- Modal -> Previous Odd -->
+<div class="modal fade" id="PreviousOdd" tabindex="-1" role="dialog" aria-labelledby="PreviousOddModalLabel" aria-hidden="true">
+
+</div>
+>>>>>>> 490eb16630eb3ccedbcdc61b5c5eb78fd2ffdda3
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @section Scripts {
@@ -294,7 +311,11 @@
 
     //load charts on modal
       
+<<<<<<< HEAD
             
+=======
+      //general      
+>>>>>>> 490eb16630eb3ccedbcdc61b5c5eb78fd2ffdda3
     $("#modalTogller").click(function () {
         $('#myModal').modal({
             keyboard: false,
@@ -303,9 +324,29 @@
         
     });
 
+<<<<<<< HEAD
      
+=======
+    //previous repoeat
+    $("#BtnPreviousRepeat").click(function () {
+        $('#PreviousRepeat').modal({
+            keyboard: false,
+            remote: '/ChartGenerator/DrawPreviousRepeatChart'
+        }).show();
 
+    });
 
+    //Previous odd
+    $("#BtnPreviousOdd").click(function () {
+        $('#PreviousOdd').modal({
+            keyboard: false,
+            remote: '/ChartGenerator/DrawPreviousOddChart'
+        }).show();
+>>>>>>> 490eb16630eb3ccedbcdc61b5c5eb78fd2ffdda3
+
+    });
+
+   
     
 
     </script>

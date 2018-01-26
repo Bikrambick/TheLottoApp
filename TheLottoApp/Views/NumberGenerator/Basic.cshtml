@@ -6,8 +6,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+        <li class="breadcrumb-item"><a href="/NumberGenerator/ShowSelection">Select Calculator</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Basic Calculator</li>
+    </ol>
+</nav>
+
 <div id="secondaryContainer">
-    <h2>Basic</h2>
+    <h2>Basic Calculator</h2>
 </div>
 @using (Ajax.BeginForm("GenerateBasic", "NumberGenerator", new AjaxOptions() { OnSuccess = "getresult", HttpMethod = "post" }, new { enctype = "multipart/form-data", @class = "form form-horizontal", data_toggle = "validator" }))
 {   
@@ -86,8 +94,15 @@
 <script type="text/javascript">
     $(document).ready(function (e) {
         $(".img-check").click(function () {
-            $(this).toggleClass("check");
-            $(this).parent().children('.selection-tick').toggle();
+            $(this).parent().parent().find('.check').not(this).removeClass('check');
+            if ($(this).hasClass('check')) {
+                $(this).removeClass("check");
+            } else {
+                $(this).addClass("check");
+            }
+            
+            //$(this).parent().parent().find('.selection-tick').removeClass('selection-tick');
+            //$(this).next().next().next('.selection-tick').toggle();
         });
     });
     $('.hidden').on('change', function () {

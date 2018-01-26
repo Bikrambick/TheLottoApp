@@ -436,6 +436,7 @@
     <Content Include="Views\Account\Subscription.cshtml" />
     <Content Include="Views\ChartGenerator\DrawGeneralChart.cshtml" />
     <Content Include="Views\Shared\_NavigationPartial.cshtml" />
+    <Content Include="Views\ChartGenerator\DrawPreviousOddChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
