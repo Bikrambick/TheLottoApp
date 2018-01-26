@@ -26,8 +26,8 @@
                     //numbers repeat
                     var barchart_options = {
                         title: 'Freequency of Occurance ',
-                        width: 500,
-                        height:600,
+                        width: 600,
+                        height:350,
                         legend: 'none'};
                     var barchart = new google.visualization.BarChart(document.getElementById('chart_div'));
                     barchart.draw(data, barchart_options);
@@ -41,14 +41,25 @@
                 }
             });
       }
-      $(function () {
-          $('#ok-btn').click(function () {
-              $('#modal-container').modal('hide');
-          });
-      });
+      
 </script>
 
 <div class="row">
-    <div class="col-md-4 col-sm-6"><div id="chart_div"></div></div>
-    <button id="ok-btn" value="OK" class="btn btn-primary" style="position:relative;">OK</button>
+    <div class="ChartModalWrapper">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center">Previous Repeat</h4>
+        </div> <!-- /modal-header -->
+        <div class="modal-body">
+
+            <div class="col-md-4 col-sm-6"><div id="chart_div"></div></div>
+
+        </div> <!-- /modal-body -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           
+        </div>
+    </div>
+     
+    
 </div>

@@ -6,7 +6,10 @@
 @*<script src="~/Scripts/Custom/RangeSlider.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />*@
 <link href="~/css/bootstrap-slider.min.css" rel="stylesheet" />
-
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
 <!--Calculator Area-->
 <hr />
@@ -67,9 +70,16 @@
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
                             <div class="col-md-7">
                                 @Html.TextBoxFor(x => x.NumbersBelow15, new { @type = "number", @class = "form-control input-sm" })
+                                
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15, "", new { @class = "text-danger" })
+
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
-                                @Html.ActionLink("show modal", "DrawGeneralChart","ChartGenerator", null, new { @class = "modal-link btn btn-success" })
+                                
+                                
+                                
+                                <!-- Button trigger modal -->
+                                
+                                    <i class="fa fa-info-circle pull-right btn-primary" id="modalTogller" data-toggle="modal" data-target="#GeneralChartModal"></i>
                                 
                                 
                             </div>
@@ -191,12 +201,7 @@
             </div>
         </div>
         <div class="col-md-5 col-md-offset-1">
-            <div id="modal-container" class="modal fade"
-                 tabindex="-1" role="dialog">
-                <div class="modal-content">
-                   
-                </div>
-            </div>
+            
             <div id="GeneratedSetWrapper">
 
             </div>
@@ -205,13 +210,20 @@
             </div>
         </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="GeneralChartModalLabel" aria-hidden="true">
+  
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/Scripts/bootstrap-slider.min.js")
+   
     @Scripts.Render("~/bundles/jqueryunob")
-<script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script>
     $('#slider-input').slider({});
 
@@ -281,29 +293,17 @@
     })
 
     //load charts on modal
-        $(function () {
-            // Initialize numeric spinner input boxes
-            //$(".numeric-spinner").spinedit();
-            // Initialize modal dialog
-            // attach modal-container bootstrap attributes to links with .modal-link class.
-            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
-            $('body').on('click', '.modal-link', function (e) {
-                e.preventDefault();
-                $(this).attr('data-target', '#modal-container');
-                $(this).attr('data-toggle', 'modal');
-            });
-            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
-            $('body').on('click', '.modal-close-btn', function () {
-                $('#modal-container').modal('hide');
-            });
-            //clear modal cache, so that new content can be loaded
-            $('#modal-container').on('hidden.bs.modal', function () {
-                $(this).removeData('bs.modal');
-            });
-            $('#CancelModal').on('click', function () {
-                return false;
-            });
-        });
+      
+            
+    $("#modalTogller").click(function () {
+        $('#myModal').modal({
+            keyboard: false,
+            remote: '/ChartGenerator/DrawGeneralChart'
+        }).show();
+        
+    });
+
+     
 
 
     

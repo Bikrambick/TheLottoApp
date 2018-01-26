@@ -517,12 +517,26 @@ text-align:left;
     color: #5cb85c;
     display:none;
 }
-
-#modal-container {
-    display: block;
-    width: 400px;
+#modalTogller{
+    margin-top: 5px;
+    color: #fff;
+    background: #428bca;
+    width: 16px;
+    text-align: center;
+   
+}
+#modalTogller:hover{
+    cursor:pointer;
+}
+#myModal{
+    width: 560px;
+    height: 470px;
+    margin-top: 70px;
+    margin-left: 430px;
     overflow: hidden;
-    height: auto;
-    margin-left: 800px;
-    margin-top: 100px;
+    border: 1px solid #000;
+    background:#fff;
+}
+.modal-body{
+    height:330px;
 }
