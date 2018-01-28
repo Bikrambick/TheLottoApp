@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TheLottoApp.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
 
 namespace TheLottoApp.Controllers
 {
@@ -163,6 +164,8 @@ namespace TheLottoApp.Controllers
         [AllowAnonymous]
         public ActionResult Subscription()
         {
+            var stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
+            ViewBag.StripePublishKey = stripePublishKey;
             using (var db = new TheLottoAppDbEntity()) {
                 var results = from x in db.AspNetRoles
                               select new SubscriptionViewModel

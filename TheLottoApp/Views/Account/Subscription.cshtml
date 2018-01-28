@@ -3,34 +3,72 @@
 @{
     ViewBag.Title = "Register";
 }
-
+<script src="https://checkout.stripe.com/v2/checkout.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <div id="secondaryContainer">
     <h2>Subscribe</h2>
 </div>
 <div class="container">
     <div class="row">
-        @foreach(var item in Model){ 
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-            <!-- PRICE ITEM -->
-            <div class="panel price panel-red">
-                <div class="panel-heading  text-center">
-                    <h3>@item.plan</h3>
-                </div>
-                <div class="panel-body text-center">
-                    <p class="lead" style="font-size:40px"><strong>$ @item.price (AUD)</strong></p>
-                </div>
-                <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i> Personal use</li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i> Unlimited projects</li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i> 27/7 support</li>
-                </ul>
-                <div class="panel-footer">
-                    <a class="btn btn-lg btn-block btn-danger" href="/payment?subscription=@item.plan">SUBSCRIBE</a>
-                </div>
-            </div>
-            <!-- /PRICE ITEM -->
-        </div>
-        }
-    </div>
+        <form action="/Payment/Charge" method="POST">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                    <!-- PRICE ITEM -->
+                    <div class="panel price panel-red">
+                        <div class="panel-heading  text-center">
+                            <h3>@item.plan</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <p class="lead" style="font-size:40px"><strong>$ @item.price (AUD)</strong></p>
+                        </div>
+                        <ul class="list-group list-group-flush text-center">
+                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Choose from popular strategies</li>
+                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Customise your options</li>
+                            <li class="list-group-item"><i class="icon-ok text-danger"></i> 24/7 support</li>
+                        </ul>
+                        <div class="panel-footer">
+                            <input type="submit"
+                                   value="SUBSCRIBE"
+                                   data-key="@ViewBag.StripePublishKey"
+                                   data-amount="@(item.price*100)"
+                                   data-currency="aud"
+                                   data-name="The Lotto App"
+                                   data-description="Stripe payment for Subscription"
+                                   class="btn btn-lg btn-block btn-danger"
+                                    />
 
+                            @*<a class="btn btn-lg btn-block btn-danger" href="/payment?subscription=@item.plan">SUBSCRIBE</a>*@
+                        </div>
+                    </div>
+                    <!-- /PRICE ITEM -->
+                </div>
+            }
+
+    
+       
+        </form>
+    </div>
 </div>
+<style>
+    .panel:hover{
+        cursor:pointer;
+    }
+</style>
+<script>
+            $(document).ready(function () {
+                $(':submit').on('click', function (event) {
+                    event.preventDefault();
+                    var $button = $(this),
+                        $form = $button.parents('form');
+                    var opts = $.extend({}, $button.data(), {
+                        token: function (result) {
+                            console.log(result);
+                            $form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id }));
+                            $form.append($('<input>').attr({ type: 'hidden', name: 'stripeEmail', value: result.email })).submit();
+                        }
+                    });
+                    StripeCheckout.open(opts);
+                });
+            });
+</script>

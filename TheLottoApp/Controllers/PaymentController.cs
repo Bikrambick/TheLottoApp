@@ -19,8 +19,9 @@ namespace TheLottoApp.Controllers
             
         }
         [HttpPost]
-        public ActionResult Charge(string stripeEmail, string stripeToken)
+        public ActionResult Charge(string stripeEmail, string stripeToken, string selectedPlan = null)
         {
+            //use selected plan argument to set amount to charge 
             var customers = new StripeCustomerService();
             var charges = new StripeChargeService();
             StripeConfiguration.SetApiKey("sk_test_I8IpHbhCWX5Qdb4lbiOELpcO");
@@ -29,18 +30,23 @@ namespace TheLottoApp.Controllers
                 Email = stripeEmail,
                 SourceToken = stripeToken
             });
-
-            var charge = charges.Create(new StripeChargeCreateOptions
+            
+            try
             {
-                Amount = 500,//charge in cents
-                Description = "Sample Charge",
-                Currency = "aud",
-                CustomerId = customer.Id
-            });
+                var charge = charges.Create(new StripeChargeCreateOptions
+                {
+                    Amount = 500,//charge in cents
+                    Description = "Sample Charge",
+                    Currency = "aud",
+                    CustomerId = customer.Id
+                });
+            }
+            catch(Exception ex) { }
+            
 
             // further application specific code goes here
 
-            return View();
+            return View("../Account/Register");
         }
     }
 }
