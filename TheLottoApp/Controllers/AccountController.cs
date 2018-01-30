@@ -194,8 +194,8 @@ namespace TheLottoApp.Controllers
 
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                     var result = await UserManager.CreateAsync(user, model.Password);
-                    
-                    
+                    //userManager.AddToRole(user.Id, model.SelectedSubscription);
+
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -470,6 +470,34 @@ namespace TheLottoApp.Controllers
             }
 
             base.Dispose(disposing);
+        }
+        public bool CreateUserAddRolePostPayment(string email, string password, string role)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                try
+                {
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>(userStore);
+                    var user = new ApplicationUser { UserName = email, Email = email };
+                    var result = UserManager.CreateAsync(user, password);
+                    userManager.AddToRole(user.Id, role);
+                    LoginSubscribedUser(user);
+                    return true;
+                }
+                catch (Exception ex) { }
+            }
+
+            return false;
+        }
+        private void LoginSubscribedUser(ApplicationUser user)
+        {
+            try
+            {
+                SignInManager.SignIn(user, true, false);
+            }
+            catch(Exception ex) { }
+            
         }
 
         #region Helpers

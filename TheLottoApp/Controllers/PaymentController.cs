@@ -19,7 +19,7 @@ namespace TheLottoApp.Controllers
             
         }
         [HttpPost]
-        public ActionResult Charge(string stripeEmail, string stripeToken, string selectedPlan = null)
+        public ActionResult Charge(string stripeEmail, string stripeToken,int amount)
         {
             //use selected plan argument to set amount to charge 
             var customers = new StripeCustomerService();
@@ -35,11 +35,12 @@ namespace TheLottoApp.Controllers
             {
                 var charge = charges.Create(new StripeChargeCreateOptions
                 {
-                    Amount = 500,//charge in cents
-                    Description = "Sample Charge",
+                    Amount = amount,//charge in cents
+                    Description = "Subscription Charge",
                     Currency = "aud",
                     CustomerId = customer.Id
                 });
+               
             }
             catch(Exception ex) { }
             
