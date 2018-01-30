@@ -479,10 +479,16 @@ namespace TheLottoApp.Controllers
                 {
                     var userStore = new UserStore<ApplicationUser>(context);
                     var userManager = new UserManager<ApplicationUser>(userStore);
+
+                    
                     var user = new ApplicationUser { UserName = email, Email = email };
-                    var result = UserManager.CreateAsync(user, password);
+                    
+                    var result = userManager.Create(user, password);
+                    
                     userManager.AddToRole(user.Id, role);
-                    LoginSubscribedUser(user);
+                    
+                    //LoginSubscribedUser(user);
+                    
                     return true;
                 }
                 catch (Exception ex) { }
@@ -494,11 +500,13 @@ namespace TheLottoApp.Controllers
         {
             try
             {
+                _signInManager.PasswordSignIn("", "",false,false);
                 SignInManager.SignIn(user, true, false);
             }
             catch(Exception ex) { }
             
         }
+      
 
         #region Helpers
         // Used for XSRF protection when adding external logins
