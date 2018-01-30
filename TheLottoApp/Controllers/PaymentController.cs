@@ -40,6 +40,31 @@ namespace TheLottoApp.Controllers
                     Currency = "aud",
                     CustomerId = customer.Id
                 });
+                String SelectedSubscription = string.Empty;
+                int caseSwitch = amount;
+                switch (caseSwitch)
+                {
+                    case 500:
+                        SelectedSubscription = "Basic";
+                        break;
+                    case 2500:
+                        SelectedSubscription = "Standard";
+                        break;
+                    case 4500:
+                        SelectedSubscription = "Professional";
+                        break;
+                    default:
+                        SelectedSubscription = "Platinum";
+                        break;
+                }
+
+
+
+                AccountController oController = new AccountController();
+                if (oController.CreateUserAddRolePostPayment(stripeEmail, "SomeRandomP@ssword123", SelectedSubscription))
+                    return View("../Manage/SetPassword");
+                
+                
                
             }
             catch(Exception ex) { }
