@@ -4,22 +4,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!--Load the AJAX API-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+<div class="container">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Statistics</li>
+        </ol>
+    </nav>
 
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', { 'packages': ['corechart'] });
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
 
-          $.ajax({
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            $.ajax({
                 type: "POST",
                 url: "/ChartGenerator/GenerateChart",
                 data: '{}',
@@ -34,8 +42,9 @@
                     var barchart_options = {
                         title: 'Freequency of Occurance ',
                         width: 500,
-                        height:600,
-                        legend: 'none'};
+                        height: 600,
+                        legend: 'none'
+                    };
                     var barchart = new google.visualization.BarChart(document.getElementById('chart_div'));
                     barchart.draw(data, barchart_options);
 
@@ -58,7 +67,7 @@
                     };
                     var barchart = new google.visualization.BarChart(document.getElementById('chart_div_prev_odd'));
                     barchart.draw(prevOdd, previousOdd_options);
-                
+
                 },
                 failure: function (r) {
                     alert(r.d);
@@ -67,22 +76,22 @@
                     alert(r.d);
                 }
             });
-      }
-</script>
+        }
+    </script>
     <!--Div that will hold the pie chart-->
     @*<div id="chart_div" style="margin-top:50px;"></div>*@
     @*<table class="columns" style="margin-top:50px;">
-        <tr>
-            <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
-            <td><div id="chart_div_prev_repeat" style="border: 1px solid #ccc"></div></td>
-            <td><div id="chart_div_prev_odd" style="border: 1px solid #ccc"></div></td>
-        </tr>
-    </table>*@
+            <tr>
+                <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
+                <td><div id="chart_div_prev_repeat" style="border: 1px solid #ccc"></div></td>
+                <td><div id="chart_div_prev_odd" style="border: 1px solid #ccc"></div></td>
+            </tr>
+        </table>*@
 
-<div class="row">
-    <div class="col-md-4 col-sm-6"><div id="chart_div"></div></div>
-    <div class="col-md-4 col-sm-6"><div id="chart_div_prev_repeat"></div></div>
-    <div class="col-md-4 col-sm-6"><div id="chart_div_prev_odd"></div></div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6"><div id="chart_div"></div></div>
+        <div class="col-md-4 col-sm-6"><div id="chart_div_prev_repeat"></div></div>
+        <div class="col-md-4 col-sm-6"><div id="chart_div_prev_odd"></div></div>
+    </div>
 </div>
-
 

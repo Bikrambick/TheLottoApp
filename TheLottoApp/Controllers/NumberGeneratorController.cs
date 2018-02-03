@@ -210,7 +210,7 @@ namespace TheLottoApp.Controllers
 
                 var nb_less_15 = model.NumbersBelow15;
                 int flag_for_15 = 0;
-                if (model.NumbersBelow15 == -1)
+                if (model.NumbersBelow15 == 0)
                 {
                     flag_for_15 = 0;
                 }
@@ -219,7 +219,7 @@ namespace TheLottoApp.Controllers
                 var nb_middle = model.NumbersBelow15And30;
                 int flag_middle = 0;
 
-                if (model.NumbersBelow15And30 == -1)
+                if (model.NumbersBelow15And30 == 0)
                 {
                     flag_middle = 0;
                 }
@@ -228,7 +228,7 @@ namespace TheLottoApp.Controllers
 
                 var nb_bigger_30 = model.NumbersAbove30;
                 int flag_for_30 = 0;
-                if (model.NumbersAbove30 == -1)
+                if (model.NumbersAbove30 == 0)
                 {
                     flag_for_30 = 0;
                 }
@@ -243,7 +243,7 @@ namespace TheLottoApp.Controllers
                 else { flag_for_score_range = 1; }
                 var prev_rep_numb = model.NumbersOfPreviousRepeat;
                 var flag_for_prev_num = 0;
-                if (model.NumbersOfPreviousRepeat == -1)
+                if (model.NumbersOfPreviousRepeat == 0)
                 {
                     flag_for_prev_num = 0;
                 }
