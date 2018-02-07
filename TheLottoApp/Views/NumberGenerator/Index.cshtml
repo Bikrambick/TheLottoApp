@@ -70,6 +70,9 @@
                             How many odd numbers do you want to allow to be in the combination? You can choose multiple options. Keep in mind that it is restricted till seven as it considers the relevant ratio: for example, If you choose 7, calculator returns all odd numbers in the combination, no matter which system you use, as algorithm handles extrapolation of the distribution. Choose number of odds like if the system is seven.
                             If you do not want to consider this filter, check the box “Doesn’t matter”
                         </p>
+                        <div class="previousOddChart">
+                            @Html.Partial("../Chartgenerator/DrawPreviousOddChart");
+                        </div>
                         <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="salary">Numbers below 15</label>
@@ -79,14 +82,6 @@
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15, "", new { @class = "text-danger" })
 
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
-                                
-                                
-                                
-                                <!-- Button trigger modal -->
-                                
-                                    <i class="fa fa-info-circle pull-right btn-primary" id="modalTogller" data-toggle="modal" data-target="#GeneralChartModal"></i>
-                                
-                                
                             </div>
                         </div>
                         <div class="form-group">
@@ -95,7 +90,6 @@
                                 @Html.TextBoxFor(x => x.NumbersBelow15And30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })          
                                 @Html.ValidationMessageFor(m => m.NumbersBelow15And30, "", new { @class = "text-danger" })
                                 <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
-                                <i class="fa fa-info-circle pull-right btn-primary" id="BtnPreviousRepeat" data-toggle="modal" data-target="#PreviousRepeat"></i>
                             </div>
                         </div>
                         <div class="form-group">
@@ -103,8 +97,7 @@
                             <div class="col-md-7">
                                 @Html.TextBoxFor(x => x.NumbersAbove30, new { @type = "number", @class = "form-control input-sm", @value = "-1" })
                                 @Html.ValidationMessageFor(m => m.NumbersAbove30, "", new { @class = "text-danger" })
-                                <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />
-                                <i class="fa fa-info-circle pull-right btn-primary" id="BtnPreviousOdd" data-toggle="modal" data-target="#PreviousOdd"></i>
+                                <label class="numberOfOddsLabel">Doesn't matter</label> <input class="numberOfOddsInput" type="checkbox" value="doesnt matter" name="doenst matter" />                                
                             </div>
                         </div>
                         <p class="calculator-description col-md-12">
@@ -128,6 +121,9 @@
                         <p class="calculator-description col-md-12">
                             Each combination has the “score”: the average possibility of the balls coming together, based on the historical data. Statistics for score for previous draws is provided below, you can choose the range of the score you want your combination to fit in. If you do not want to consider this filter, check the box “Doesn’t matter”
                         </p>
+                        <div class="chartsCombined">
+                            @Html.Partial("../Chartgenerator/DrawGeneralChart");
+                        </div>
                         <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="status">Number of previous repeat</label>
@@ -141,6 +137,9 @@
                             Choose how many numbers from the previous game you want to be repeated. Calculator will randomly choose balls from the previous game to include, according to how many of them do you want in your tickets. If you don’t want any number to be repeated, put zero. If you do not want to consider this filter, check the box “Doesn’t matter”
                             If you want to choose the specific number to be included from previous game, add it explicitly to the next field: “Numbers to Include”
                         </p>
+                        <div class="chartPreviousRepeat">
+                            @Html.Partial("../Chartgenerator/DrawPreviousRepeatChart");
+                        </div>
                         <hr />
                         <div class="form-group">
                             <label class="col-md-5 control-label" for="owner">Numbers to include</label>
@@ -300,36 +299,6 @@
             $('.oddNumbers').removeAttr('disabled');
         }
     })
-
-    //load charts on modal
-      
-    $("#modalTogller").click(function () {
-        $('#myModal').modal({
-            keyboard: false,
-            remote: '/ChartGenerator/DrawGeneralChart'
-        }).show();
-        
-    });
-
-    //previous repoeat
-    $("#BtnPreviousRepeat").click(function () {
-        $('#PreviousRepeat').modal({
-            keyboard: false,
-            remote: '/ChartGenerator/DrawPreviousRepeatChart'
-        }).show();
-
-    });
-
-    //Previous odd
-    $("#BtnPreviousOdd").click(function () {
-        $('#PreviousOdd').modal({
-            keyboard: false,
-            remote: '/ChartGenerator/DrawPreviousOddChart'
-        }).show();
-
-
-    });
-
    
     
 
