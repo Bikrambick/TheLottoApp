@@ -72,7 +72,7 @@ namespace TheLottoApp.Controllers
 
             // further application specific code goes here
 
-            return View("../Account/Register");
+            return View("../Manage/SetPassword");
         }
     }
 }

@@ -6,15 +6,20 @@
 @*<script src="~/Scripts/Custom/RangeSlider.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Content/Custom/RangeSlider.css" />*@
 <link href="~/css/bootstrap-slider.min.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+@*<script src="~/Scripts/jquery-1.12.4.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
-<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />*@
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
 <!--Calculator Area-->
-<hr />
-
 <div class="container calculatorContainer">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item"><a href="/NumberGenerator/ShowSelection">Select Calculator</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Advanced Calculator</li>
+        </ol>
+    </nav>
     <div class="row">
         <div class="col-md-6 effect8">
             <div class="panel panel-primary">
@@ -179,19 +184,7 @@
                             How many tickets do you want to generate? Your current limit is [put here their current limit]
                         </p>
                         <hr />
-                        <div class="form-group">
-                            <label class="col-md-5 control-label" for="downsize">System (How many games per game? )</label>
-                            <div class="col-md-7">
-                                @*<input class="form-control input-sm" name="system" type="number" />*@
-                                @Html.TextBoxFor(x => x.system, new { @type = "number", @class = "form-control input-sm" })
-                                @Html.ValidationMessageFor(m => m.system, "", new { @class = "text-danger" })
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                        <p class="calculator-description col-md-12">
-                            How many balls per ticket to you want to generate?
-                        </p>
-                        <hr />
+                       
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-4">
                                 <input type="submit" value="Generate" class="btn pull-right btn-primary btn-lg" id="calculate">
@@ -213,12 +206,12 @@
         </div>
 
 
-<<<<<<< HEAD
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="GeneralChartModalLabel" aria-hidden="true">
   
 </div>
-=======
+
 <!-- Modal -> General -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="GeneralChartModalLabel" aria-hidden="true">
   
@@ -231,7 +224,6 @@
 <div class="modal fade" id="PreviousOdd" tabindex="-1" role="dialog" aria-labelledby="PreviousOddModalLabel" aria-hidden="true">
 
 </div>
->>>>>>> 490eb16630eb3ccedbcdc61b5c5eb78fd2ffdda3
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @section Scripts {
@@ -245,10 +237,10 @@
     $('#slider-input').slider({});
 
     $(".numberOfOddsInput").click(function () {
-        $(this).parent().children('input').val(-1);
+       // $(this).parent().children('input').val(-1);
         if ($('.numberOfOddsInput').is(':checked')) {
             $('#txt').val('checked');
-            $(this).parent().children('input').first().val("-1");
+           // $(this).parent().children('input').first().val("-1");
             debugger;
             if ($(this).prev('.field-validation-error')) {
                 var a = $(this).prev('.field-validation-error');
@@ -311,11 +303,6 @@
 
     //load charts on modal
       
-<<<<<<< HEAD
-            
-=======
-      //general      
->>>>>>> 490eb16630eb3ccedbcdc61b5c5eb78fd2ffdda3
     $("#modalTogller").click(function () {
         $('#myModal').modal({
             keyboard: false,
@@ -324,9 +311,6 @@
         
     });
 
-<<<<<<< HEAD
-     
-=======
     //previous repoeat
     $("#BtnPreviousRepeat").click(function () {
         $('#PreviousRepeat').modal({
@@ -342,7 +326,7 @@
             keyboard: false,
             remote: '/ChartGenerator/DrawPreviousOddChart'
         }).show();
->>>>>>> 490eb16630eb3ccedbcdc61b5c5eb78fd2ffdda3
+
 
     });
 

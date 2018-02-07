@@ -4,23 +4,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<nav aria-label="breadcrumb" role="navigation">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Select Calculator</li>
-    </ol>
-</nav>
-<div id="secondaryContainer">
-    <h2>Show Selection</h2>
-</div>
-
 <div class="container">
+    <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Select Calculator</li>
+        </ol>
+    </nav>
+    <div id="secondaryContainer">
+        <h2>Select Calculator</h2>
+    </div>
     <div class="row">
         <div class="col-md-6" id="ChartGeneratorSelector">
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Basic Selection</h4>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <hr />
+                    <p class="card-text">Generate your ticket numbers according to the predefined strategies: the strategies are precisely developed in order to consider different aspects of possible outcome and return the weighted ticket numbers.</p>
+                    <br />
+                    <hr />
                     <a href="/NumberGenerator/basic" class="btn btn-lg btn-primary">Basic</a>
                 </div>
             </div>
@@ -30,15 +32,17 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Advanced Selection</h4>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <hr />
+                    <p class="card-text">Create your own strategy: choose distribution of odd/even numbers, include/exclude desired numbers, decide whether include previous numbers or not and so on and so forth. All the statistics provided for you to make the informed decision.</p>
+                    <hr />
                     <a href="/NumberGenerator/index" class="btn btn-lg btn-primary">Advanced</a>
                 </div>
             </div>
         </div>
+    </div>
 </div>
 <style type="text/css">
     #basic,#advanced{
-        border:1px solid #ccc;
         height: 300px;
         width:280px;
         top:50px;
@@ -53,7 +57,6 @@
     }
     #ChartGeneratorSelector{
         text-align:center;
-        border:1px solid #ccc;
         padding-bottom:40px;
 
     }

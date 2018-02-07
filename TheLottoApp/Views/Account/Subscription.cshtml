@@ -67,6 +67,7 @@
                             console.log(result);
                             console.log($dataAmount);
                             $form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id }));
+                            $form.append($('<input>').attr({ type: 'hidden', name: 'amount', value: $dataAmount }));
                             $form.append($('<input>').attr({ type: 'hidden', name: 'stripeEmail', value: result.email })).submit();
                         }
                     });
