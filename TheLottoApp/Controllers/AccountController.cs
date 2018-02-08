@@ -172,7 +172,10 @@ namespace TheLottoApp.Controllers
                               {
                                   allowedTickets = x.Allowed_Tickets ?? 0,
                                   plan = x.Name,
-                                  price = x.Subscription_Price ?? 0
+                                  price = x.Subscription_Price ?? 0,
+                                  System = x.Allowed_Numbers ?? 0,
+                                  Subscription_Perod = x.Susbcription_Period ?? 0
+
                               };
                 return View(results.ToList());
             }

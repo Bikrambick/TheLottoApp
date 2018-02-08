@@ -515,3 +515,35 @@ text-align:left;
     color: #5cb85c;
     display:none;
 }
+.chartAreaWrapper{
+    margin-left:90px;
+    border: 2px solid #ffd400;
+    box-shadow: 5px 4px 3px 2px;
+    width:50%
+}
+#adminActionWrapper{
+    width: 50%;
+    border: 2px solid red;
+    height: 600px;
+    left: 390px;
+    position: relative;
+    top: 50px;
+    
+}
+.adminActions > ul{
+    padding:10px;
+}
+.adminActions > ul > li:hover{
+   background: red;
+   color:white;
+}
+.adminActions > ul > li{
+    list-style:none;
+    height: 100px;
+    margin-left:10px;
+    width: 124px;
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 10px;
+    border: 1px solid black;
+}
