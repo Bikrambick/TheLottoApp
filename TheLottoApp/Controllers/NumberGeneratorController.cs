@@ -129,7 +129,7 @@ namespace TheLottoApp.Controllers
 
         [HttpPost]
         public JsonResult GenerateNumber(NumberGeneratorViewModel model)
-        {
+         {
             if (User.Identity.IsAuthenticated)
             {
                 
@@ -181,10 +181,10 @@ namespace TheLottoApp.Controllers
                 var totalAllowedTicket = Convert.ToInt32(userSystem.Select(x => x.Allowed_Tickets).FirstOrDefault());
 
                 int TotalTicketsToGenerated = 0;
-                var PreviouslyGeneratedRecord = userController.GetGeneratedNumberSet(userid);
+                //var PreviouslyGeneratedRecord = userController.GetGeneratedNumberSet(userid);
                 try
                 {
-                     TotalTicketsToGenerated = Convert.ToInt32(PreviouslyGeneratedRecord.Select(x => x.Total_Tickets_Generated).FirstOrDefault());
+                    TotalTicketsToGenerated = Convert.ToInt32(userController.GetGeneratedNumberSet(userid));
                 }
                 catch(Exception ex) { }
                 

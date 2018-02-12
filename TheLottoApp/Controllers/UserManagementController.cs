@@ -73,12 +73,31 @@ namespace TheLottoApp.Controllers
                 catch (Exception ex) { }
             }
         }
-        public List<tblUserGeneratedTicket> GetGeneratedNumberSet(object userId)
+        public int GetGeneratedNumberSet(object userId)
         {
             using (var db = new TheLottoAppDbEntity())
             {
-                return db.tblUserGeneratedTickets.Where(x => x.User_Id == userId.ToString()).ToList();
+                //if today is monday then straight to total allowed tickets else get last monday and then
+                //get the sum of all generated tickets after monday.
+                if(DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+                {
+
+                    return 0;
+                }
+                else
+                {
+                    try
+                    {
+                        var Lastmonday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+                        var tkc = db.tblUserGeneratedTickets.Where(x => x.User_Id == userId.ToString()).
+                            Where(x => x.Ticket_Generated_Date >= Lastmonday).GroupBy(x => x.Id).Select(x => x.Sum(y=>y.Total_Tickets_Generated));
+
+                        return Convert.ToInt32(tkc.FirstOrDefault());
+                     }
+                    catch (Exception ex) { }
+                }
             }
+            return 0;
         }
         public string GetUserSusbription(string userId)
         {
