@@ -54,7 +54,7 @@ namespace TheLottoApp.Controllers
                 var PreviouslyGeneratedRecord = userController.GetGeneratedNumberSet(userid);
                 try
                 {
-                    TotalTicketsToGenerated = Convert.ToInt32(PreviouslyGeneratedRecord.Select(x => x.Total_Tickets_Generated).FirstOrDefault());
+                    TotalTicketsToGenerated = Convert.ToInt32(userController.GetGeneratedNumberSet(userid));
                 }
                 catch (Exception ex) { }
 
@@ -236,7 +236,7 @@ namespace TheLottoApp.Controllers
 
                 // List<double> score_range = new List<double> { 0.01, 0.03 };
                 var flag_for_score_range = 0;
-                if (string.IsNullOrEmpty(model.ScoreRange))
+                if (string.IsNullOrEmpty(model.ScoreRange) || model.ScoreRange == "0.018,0.028")
                 {
                     flag_for_score_range = 0;
                 }
