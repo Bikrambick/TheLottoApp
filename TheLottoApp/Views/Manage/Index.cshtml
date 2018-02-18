@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-6" style="float:none;margin:0 auto;">
                 <div class="card">
-                    <div style="text-align:center;size:20%;">
+                    <div style="text-align:center;">
                         <img src="~/Content/Media/profile.png" />
                     </div>
                     <hr />
@@ -29,7 +29,7 @@
                         @Html.ActionLink("Upgrade Subscription", "Subscription", "Account", new { area = "" }, new { @class = "btn btn-primary" })
                         @if (Model.HasPassword)
                         {
-                            @Html.ActionLink("Change your password", "ChangePassword","ChangePassword", new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Change your password", "ChangePassword","ChangePassword", new { @class = "btn btn-primary changePassword" })
                         }
                         else
                         {

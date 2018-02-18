@@ -547,3 +547,32 @@ text-align:left;
     margin-top: 10px;
     border: 1px solid black;
 }
+
+.basicCalculator .img-thumbnail {
+    width:75%;
+}
+
+.adminContainer {
+border: 1px solid#e2e2e2;
+    padding: 40px 40px;
+}
+
+.adminContainer .col-md-3 > p {
+border: 1px solid #5e8ece;
+    padding: 41px 53px;
+    text-align: center;
+    border-radius: 36px;
+    cursor:pointer;
+}
+
+    .adminContainer .col-md-3 > p:hover {
+        background-color: #5e8ece;
+        color:#ffffff;
+    }
+
+#entryContainer {
+    padding-top:24px;
+}
+.changePassword {
+    margin-left:10px;
+}
